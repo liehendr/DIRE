@@ -1,0 +1,26 @@
+{
+  "name": "dire",
+  "version": "1.0.0",
+  "description": "DIRE Web App",
+  "homepage": "https://github.com/liestella56/DIRE#readme",
+  "bugs": {
+    "url": "https://github.com/liestella56/DIRE/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liestella56/DIRE.git"
+  },
+  "license": "ISC",
+  "author": "Theresia Stella Lie",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/app.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/app.css"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.3",
+    "tailwindcss": "^4.0.3"
+  }
+}
