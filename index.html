@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIRE Interactive</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <!-- Welcoming Page -->
+    <div id="welcomePage" class="page">
+        <h1>DIRE</h1>
+        <p>Disaster Interactive Readiness Education</p>
+        <button onclick="startApp()">Start</button>
+        <button onclick="goToResources()">Resources</button>
+    </div>
+
+    <!-- Resources Page -->
+    <div id="resourcesPage" class="page">
+        <h2>Resources</h2>
+        <p>Learn about earthquake & tsunami preparedness.</p>
+        <button onclick="openGuidebook()">Click here to open Guidebook</button>
+        <button onclick="navigateTo('welcomePage')">Back</button>
+    </div>
+
+    <!-- Scenario Selection Page -->
+    <div id="scenarioPage" class="page">
+        <h2>Select a Scenario</h2>
+        <button onclick="launchScenario(1)">Scenario 1</button>
+        <button onclick="launchScenario(2)">Scenario 2</button>
+        <button onclick="goToMenu()">Back to Menu</button>
+    </div>
+
+    <!-- Interactive Scenario Page -->
+    <div id="interactivePage" class="page">
+        <h2 id="scenarioTitle"></h2>
+        <div id="gameArea">
+            <div id="character"></div>
+            <p id="scenarioText">Use arrow keys to move. Press Spacebar to interact.</p>
+        </div>
+        <button onclick="navigateTo('scenarioPage')">Back</button>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menuPage" class="page">
+        <h2>Scenario Menu</h2>
+        <button onclick="launchScenario(1)">Chapter 1</button>
+        <button onclick="launchScenario(2)">Chapter 2</button>
+        <button onclick="navigateTo('welcomePage')">Back</button>
+    </div>
+</body>
+</html>
