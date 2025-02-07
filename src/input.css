@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sansnarrow: "PT Sans Narrow", "sans-serif"; 
+}
