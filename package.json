@@ -16,6 +16,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "npx tailwindcss-cli@latest init",
     "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/app.css --watch",
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/app.css"
   },
