@@ -14,42 +14,47 @@
     <!-- Navigation Bar (Fixed at the top) -->
     <nav class="fixed top-0 left-0 w-full bg-white z-50 flex border border-gray-300">
 
-        <!-- Left Section: Logo -->
+        <!-- Left: DIRE Logo -->
         <div class="flex mr-auto"> <!-- Pushes the logo to the left -->
             <div class="py-2 px-4 mx-auto block align-middle"> <!-- Adds padding for spacing -->
-                <img class="h-10" src="./assets/dire-logo-final.png" alt="DIRE Direct Response logo"> <!-- Ensures the logo maintains its aspect ratio -->
+                <img class="h-10" src="./assets/dire-logo-final.png" alt="DIRE Logo"> <!-- Ensures the logo maintains its aspect ratio -->
             </div>
             
         </div>
-        <!-- Right Section: Navigation Links -->
-        <div class="flex">
-            <a class="py-4 px-4 block uppercase text-xl font-bold" href="#">Home</a>
-            <a class="py-4 px-4 block uppercase text-xl" href="#">Resources</a>
-            <a class="py-4 px-4 block uppercase text-xl" href="#">Scenarios</a>
+        <!-- Right: Navigation Bar -->
+        <div class="flex space-x-4">
+            <button class="py-3 px-1 uppercase text-2 font-bold">Home</button>
+            <button class="py-3 px-1 uppercase text-2">Resources</button>
+            <button class="py-3 px-1 uppercase text-2">About Us</button>
+        
+            <!-- Play Button -->
+            <button class="relative flex justify-center items-center w-[calc(2_*_2rem)] h-[calc(1_*_2rem)] mt-3 mr-4 py-2 uppercase text-2 text-white bg-red-500 border-2 border-black rounded-lg">
+                Play
+            </button>
+
+        </div>
+        
         </div>
     </nav>
 
 <!-- Main Content -->
 <section> 
     <!-- Home Section -->
-    <home class="w-full h-60 sm:h-90 bg-gray-200 grid grid-cols-2 justify-center sm:flex sm:flex-row items-center sm:px-8">
-        <div class="sm:flex-none mt-37 sm:mt-75 ml-auto">
-            <img src="./assets/dire-logo-icon.png" alt="DIRE Icon" class="h-30 sm:h-60 mr-4">
+    <home class="w-full h-90 bg-gray-200 flex flex-col sm:flex-row items-center px-8 relative">
+      
+        <!-- Logo -->
+        <div class="w-full lg:w-auto absolute flex justify-center lg:justify-start lg:ml-[120px] mt-71 md:mt-74 lg:mt-75">
+            <img src="./assets/dire-logo-homepage.png" alt="DIRE Icon Home" class="h-30 sm:h-60">
         </div>
-
-        <div class="sm:flex-none mr-auto flex flex-col items-left mt-45 sm:mt-115 ">
-            <h1 class="text-[70px] sm:text-[125px] font-bold text-red-600 ">DIRE</h1>
-            <h2 class="text-[20px] sm:text-[30px] -mt-5 sm:-mt-8  font-semibold text-red-500">Disaster Ready</h2>
-            <p class="hidden sm:block text-md text-black w-100 mt-1">
-                DIRE is a platform that aims to enhance disaster preparedness among tourists in Bali with interactive scenarios that educates on earthquake and tsunami disaster risks, and safety measures available to increase the tourists’ chances of survival.
-            </p>
-        </div>
-        <div class="sm:hidden col-span-2 items-left container mx-auto max-w-180 px-16">
-            <p class="text-md text-black mt-1">
-                DIRE is a platform that aims to enhance disaster preparedness among tourists in Bali with interactive scenarios that educates on earthquake and tsunami disaster risks, and safety measures available to increase the tourists’ chances of survival.
+    
+        <!-- Desc -->
+        <div class="w-full text-center lg:text-left lg:left-[100px] bottom-[-50px]">
+            <p class="text-md text-black mt-105 md:mt-165 lg:mt-155 lg:ml-91 max-w-lg mx-auto lg:mx-0">
+                DIRE is a platform that aims to enhance disaster preparedness among tourists in Bali with interactive scenarios that educate on earthquake and tsunami disaster risks, and safety measures available to increase the tourists’ chances of survival.
             </p>
         </div>
     </home>
+    
     <!-- blank section -->
     <div class="h-70">
     </div>
@@ -59,26 +64,26 @@
 <section>
     <!-- Resources Section -->
     <reso class="container mr-auto lg:mx-auto max-w-5xl px-8 block">
-        <!-- Mobile: Stacks with Rectangle Below Title | Desktop: Side-by-Side -->
+        
+        <!-- Mobile: Stacks with Image Below Title | Desktop: Side-by-Side -->
         <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8">
-            
-            <!-- Left: Text Content -->
+            <!-- Title -->
             <div class="lg:w-2/3">
-                <h1 class="text-[70px] lg:text-[125px] font-bold text-red-600 text-left">
+                <h1 class="text-[70px] lg:text-[125px] text-center lg:text-left font-bold text-red-600">
                     RESOURCES
                 </h1>
 
-            <!-- Rectangle + Download Text (Mobile View) -->
+            <!-- Image + Download -->
             <div class="lg:hidden flex flex-col items-center mt-6">
                 <div class="bg-gray-300 w-[300px] h-[450px] flex items-center justify-center">
                     <span class="text-gray-500">[Images]</span>
                 </div>
-                <p class="text-sm text-gray-600 mt-2 text-center cursor-pointer hover:underline">
+                <p class="text-sm text-blue-600 mt-2 text-center cursor-pointer hover:underline">
                     Click here to download
                 </p>
             </div>
 
-            <!-- Paragraphs (Mobile View) -->
+            <!-- Desc -->
             <div class="mt-4 text-justify lg:text-left">
                 <p class="leading-relaxed">What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 
@@ -86,7 +91,6 @@
                 
                 <p class="leading-relaxed mt-4">Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
             </div>
-
         </div>
 
             <!-- Right: Rectangle + Download Text (Desktop Only) -->
