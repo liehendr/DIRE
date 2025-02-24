@@ -3,74 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="./src/app.css" rel="stylesheet">
+    <title>DIRE - Disaster Ready</title>
+    <link href="/src/app.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=PT+Sans+Narrow:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-    
 <body class="font-sansnarrow">
         
     <!-- Navigation Bar (Fixed at the top) -->
     <nav class="fixed top-0 left-0 w-full bg-white z-50 flex border border-gray-300">
         <!-- Left: DIRE Logo -->
-        <div class="flex mr-auto py-2 px-4">
+        <div class="flex-none mr-auto py-2 px-4">
             <img class="h-10" src="./assets/dire-logo-final.png" alt="DIRE Logo">
         </div>
 
         <!-- Right: Sections Button -->
-        <div class="flex space-x-3">
-            <a href="#home" class="nav-link py-4 px-1 uppercase text-2 transition-colors duration-300">Home</a>
-            <a href="#resources" class="nav-link py-4 px-1 uppercase text-2 transition-colors duration-300">Resources</a>
-            <a href="#about-us" class="nav-link py-4 px-1 uppercase text-2 transition-colors duration-300">About Us</a>
-            <a href="#play" class="nav-link relative flex justify-center items-center w-[calc(2_*_2rem)] h-[calc(1_*_2rem)] mt-3 mr-5 py-2 uppercase text-2 text-white bg-red-500 border-2 border-black rounded-lg transition-colors duration-300">Play</a>
+        <div class="flex space-x-3 text-sm">
+            <input type="checkbox" name="right-nav" id="right-nav" class="hidden peer/right-nav">
+            <label for="right-nav" class="flex sm:hidden items-center rounded-full border border-white hover:border-black p-2 m-3">
+                <span class="sr-only">Open menu</span>
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+            </label>
+            <div id="mainMenu" class="hidden sm:flex sm:space-x-3
+            peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
+                <div class="flex absolute right-0 top-0">
+                    <label for="right-nav" class="justify-end ml-auto sm:hidden text-right m-0 p-2 items-center rounded-full hover:bg-gray-100">
+                        <span class="sr-only">Close Nav</span>
+                        <svg class="size-4" fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                    </label>
+                </div>
+                <a href="#home" class="nav-link py-4 px-1 uppercase transition-colors duration-300">Home</a>
+                <a href="#resources" class="nav-link py-4 px-1 uppercase transition-colors duration-300">Resources</a>
+                <a href="#about-us" class="nav-link py-4 px-1 uppercase transition-colors duration-300">About Us</a>
+                <a href="#play" class="nav-link relative flex justify-center items-center w-[calc(2_*_2rem)] h-[calc(1_*_2rem)] mt-3 mr-5 py-2 uppercase text-white bg-red-500 border-2 border-black rounded-lg transition-colors duration-300">Play</a>
+            </div>
+            <label for="right-nav" class="hidden peer-checked/right-nav:block fixed inset-0 bg-white opacity-0"></label>
         </div>
     </nav>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-link");
-        const playButton = document.querySelector(".nav-link[href='#play']");
-
-        function updateActiveNav() {
-            let scrollPosition = window.scrollY + 50;
-
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                const isPlaySection = section.id === "play";
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    navLinks.forEach(link => link.classList.remove("font-bold", "underline", "text-red-500"));
-                    
-                    if (isPlaySection) {
-                        playButton.classList.add("font-bold", "underline");
-                    } else {
-                        navLinks[index].classList.add("font-bold", "underline", "text-red-500");
-                    }
-                }
-            });
-        }
-
-        window.addEventListener("scroll", updateActiveNav);
-    });
-        </script>
-
 <!-- Main Content -->
     <!-- Home Section -->
-    <section id="home" class="w-full h-90 bg-gray-200 flex flex-col sm:flex-row items-center px-8 relative">
+    <section id="home" class="w-full h-90 bg-gray-200 flex flex-col lg:flex-row items-center px-8 relative">
         
         <!-- Logo -->
-        <div class="w-full lg:w-auto absolute flex justify-center lg:justify-start lg:ml-[120px] mt-71 md:mt-74 lg:mt-75">
-            <img src="./assets/dire-logo-homepage.png" alt="DIRE Icon Home" class="h-30 sm:h-60">
+        <div class="w-full lg:w-auto absolute flex justify-center lg:justify-start lg:ml-[120px] mt-71 lg:mt-75">
+            <img src="./assets/dire-logo-homepage.png" alt="DIRE Icon Home" class="h-30 lg:h-60">
         </div>
         
          <!-- Desc -->
         <div class="w-full text-center lg:text-left lg:left-[100px] bottom-[-50px]">
-            <p class="text-md text-black mt-105 md:mt-165 lg:mt-155 lg:ml-91 max-w-lg mx-auto lg:mx-0">
+            <p class="text-md text-black mt-105 lg:mt-155 lg:ml-94 max-w-lg mx-auto lg:mx-0">
                 DIRE is a platform that aims to enhance disaster preparedness among tourists in Bali with interactive scenarios that educate on earthquake and tsunami disaster risks, and safety measures available to increase the tourists’ chances of survival.
              </p>
          </div>
@@ -82,7 +66,7 @@
 
 
     <!-- Resources Section -->
-    <section id="resources" class="container mr-auto lg:mx-auto max-w-5xl px-8 py-65 block">
+    <section id="resources" class="container mr-auto lg:mx-auto max-w-5xl px-8 pt-40 lg:pt-65 block">
             
         <!-- Mobile: Stacks with Image Below Title | Desktop: Side-by-Side -->
         <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8">
@@ -103,7 +87,7 @@
             </div>
 
             <!-- Desc -->
-            <div class="mt-4 text-justify lg:text-justify lg:text-left">
+            <div class="mt-4 text-justify lg:text-justify">
                 <p class="leading-relaxed">What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                 
                 <p class="leading-relaxed mt-4">Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
@@ -127,7 +111,7 @@
 
 
     <!-- About Us Section -->
-    <section id="about-us" class="container mr-auto lg:mx-auto max-w-5xl px-8 block">
+    <section id="about-us" class="container mr-auto lg:mx-auto max-w-5xl px-8 pt-10 block">
         <!-- Title -->
         <div>
             <h1 class="text-[70px] lg:text-[125px] text-center font-bold text-red-600">
@@ -136,7 +120,7 @@
         </div>
         
         <!-- Desc -->
-        <div class="mt-4 lg:w-auto mx-auto text-justify text-center lg:text-center">
+        <div class="mt-4 lg:w-auto mx-auto text-justify lg:text-center">
             <p class="leading-relaxed">What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             
             <p class="leading-relaxed mt-4">Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
@@ -144,7 +128,7 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="play">
+    <section id="play" class="mx-auto container pt-10">
         <!-- Title -->
         <div>
             <h1 class="text-[70px] lg:text-[125px] text-center font-bold text-red-600">
@@ -153,10 +137,10 @@
         </div>
 
         <!--Box Rectangle-->
-        <div class="bg-gray-50 absolute h-80 lg:h-150 m-8 lg:m-19 shadow-gray-500 shadow-md relative flex flex-col items-center">
+        <div class="bg-gray-50 relative pb-8 lg:pb-16 m-2 sm:m-8 lg:m-19 shadow-gray-500 shadow-md flex flex-col items-center">
             <!-- Cover -->
-            <div class="mt-8 w-full">
-                <img src="./assets/dire-play-cover.png" alt="Play Cover" class="w-full h-auto">
+            <div class="mt-8">
+                <img src="./assets/dire-play-cover.png" alt="Play Cover" class="object-contain">
             </div>
 
             <!-- Text -->
@@ -172,11 +156,11 @@
                     Play!
                 </a>
             </div>
-
-        </div>        
+        </div>
 
     </section>
 
+    <script src="/src/main.js"></script>
 </body>
 
 </html>
