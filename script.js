@@ -29,7 +29,7 @@ function openGuidebook() {
     window.open('guidebook.pdf', '_blank');
 }
 
-// Launch a scenario
+// Launch DIRE Play
 function launchScenario(scenario) {
     let scenarioTitle = document.getElementById('scenarioTitle');
 if (scenarioTitle) {
@@ -81,6 +81,15 @@ document.addEventListener('keydown', (event) => {
     break;
 
     }
+});
+
+// menu button
+document.addEventListener("DOMContentLoaded", function () {
+    const menuBtn = document.getElementById("menuBtn");
+
+    menuBtn.addEventListener("click", () => {
+        window.location.href = "menu.html"; // Change this to your menu page URL
+    });
 });
 
 // Return to menu
