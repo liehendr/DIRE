@@ -3,125 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Page</title>
+    <title>Scrolling Background Game</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .fade-out {
-            opacity: 0;
-            transition: opacity 1s ease-out;
+        body, html {
+            margin: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* Game Scene (Scrollable Background) */
+        #game {
+            width: 200vw;
+            height: 100vh;
+            background: url('./assets/play-background.png') no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            position: relative;
+            overflow: hidden;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* Play Cover */
+        #logo-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* Chapter 1 */
+        #chapter-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* Character (Stickman) */
+        #stickman {
+            position: absolute;
+            bottom: 110px;
+            left: 50px; /* Starts on the left */
+            width: 50px;
+            height: 100px;
+            background: black;
+            border-radius: 10px;
+        }
+
+        /* Control Buttons (Fixed to the Screen) */
+        #controls {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: calc(100% - 120px);
+            z-index: 500;
+            opacity: 0; /* Initially hidden */
+            visibility: hidden; /* Ensure it's hidden initially */
+            transition: opacity 2s ease-in-out, visibility 2s ease-in-out; /* Smooth fade-in transition */
+        }
+
+        .control-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid black;
+            font-size: 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        nav img {
+            height: 40px;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            height: 3px;
+            background-color: black;
+            width: 100%;
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    
-    <!-- ✅ Navigation Bar (Fixed at Top) -->
-    <nav class="fixed top-0 left-0 w-full bg-white z-50 flex justify-between items-center border border-gray-300 px-4 py-2">
+<body>
+
+    <!-- Logo and Chapter Screens (Initially Visible) -->
+    <div id="logo-screen" class="fade-image" style="background-image: url('./assets/play-cover-2.png');"></div>
+    <div id="chapter-screen" class="fade-image" style="background-image: url('./assets/chapter-1.png');"></div>
+
+    <!-- Navigation Bar (Fixed at the top) -->
+    <nav>
         <!-- Left: DIRE Logo -->
-        <div>
-            <img class="h-10" src="./assets/dire-logo-final.png" alt="DIRE Logo">
+        <div class="flex-none mr-auto py-2 px-4">
+            <img class="h-10" src="./assets/logo.png" alt="DIRE Logo">
         </div>
 
-        <!-- Right: Menu Button (Redirects to New Page) -->
-        <div>
-            <button id="menuBtn" class="p-2 border border-gray-400 rounded-md">☰</button>
+        <!-- Right: Hamburger Menu (Smaller and Centered) -->
+        <div class="flex-none py-2 px-4 flex items-center justify-center">
+            <div class="hamburger flex flex-col justify-between items-center w-5 h-5 cursor-pointer">
+                <div class="bg-black h-1 w-full"></div>
+                <div class="bg-black h-1 w-full"></div>
+                <div class="bg-black h-1 w-full"></div>
+            </div>
         </div>
     </nav>
 
-    <!-- Opening Section -->
-    <section id="opening" class="h-screen flex items-center justify-center bg-white">
-        <img class="h-20" src="./assets/dire-logo-final.png" alt="DIRE Logo">
-    </section>
-
-    <!-- Chapter 1 Section -->
-    <section id="chapter1" class="h-screen flex items-center justify-center bg-gray-200 hidden">
-        <h1 class="text-[70px] lg:text-[125px] text-center font-bold text-red-600">CHAPTER 1</h1>
-    </section>
-
-    <!-- Game Section -->
-    <section id="game" class="h-screen flex flex-col justify-center items-center bg-gray-100 hidden relative">
-        <!-- Progress Box -->
-        <div class="absolute top-16 left-4 bg-white border border-black px-4 py-2 rounded-lg">
-            Step <span id="stepCount">1</span>/9
-        </div>
-
+    <!-- Game Scene -->
+    <div id="game">
         <!-- Stickman Character -->
-        <div id="stickman" class="absolute bottom-50 left-20 flex flex-col items-center">
-            <!-- Head -->
-            <div class="w-12 h-12 bg-black rounded-full"></div>
-            <!-- Body -->
-            <div class="w-6 h-20 bg-black rounded-lg"></div>
-        </div>
+        <div id="stickman"></div>
+    </div>
 
-        <!-- Movement Buttons (Bottom Left & Right) -->
-        <div class="absolute bottom-12 w-full flex justify-between px-[60px]">
-            <button id="leftBtn" class="w-24 h-24 rounded-full bg-white border-4 border-gray-700 flex items-center justify-center shadow-lg">
-                <span class="text-8xl font-bold flex items-center justify-center leading-none">&lt;</span>
-            </button>
-            <button id="rightBtn" class="w-24 h-24 rounded-full bg-white border-4 border-gray-700 flex items-center justify-center shadow-lg">
-                <span class="text-8xl font-bold flex items-center justify-center leading-none">&gt;</span>
-            </button>
-        </div>
-
-    <!-- 🔊 Sound Effect -->
-    <audio id="stepSound" src="./assets/step.mp3"></audio>
+    <!-- Control Buttons (Fixed to the Screen) -->
+    <div id="controls">
+        <button id="leftBtn" class="control-btn">←</button>
+        <button id="rightBtn" class="control-btn">→</button>
+    </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const opening = document.getElementById("opening");
-            const chapter1 = document.getElementById("chapter1");
-            const game = document.getElementById("game");
+            const gameContainer = document.getElementById("game");
             const stickman = document.getElementById("stickman");
-            const stepSound = document.getElementById("stepSound");
+            const leftBtn = document.getElementById("leftBtn");
+            const rightBtn = document.getElementById("rightBtn");
+            const logoScreen = document.getElementById("logo-screen");
+            const chapterScreen = document.getElementById("chapter-screen");
+            const controls = document.getElementById("controls");
 
-            // ✅ Opening Animation (Show for 3s, then fade out)
-            setTimeout(() => {
-                opening.classList.add("fade-out");
-                setTimeout(() => {
-                    opening.style.display = "none";
-                    chapter1.style.display = "flex";
-                }, 1000);
-            }, 3000);
+            let stickmanPos = 50;
+            let backgroundPos = 0;
+            const screenMiddle = window.innerWidth / 2;
+            const moveSpeed = 10;
+            const maxBackgroundMove = -window.innerWidth;
 
-            // ✅ Chapter 1 (Show for 3s, then move to game)
-            setTimeout(() => {
-                chapter1.classList.add("fade-out");
-                setTimeout(() => {
-                    chapter1.style.display = "none";
-                    game.style.display = "flex";
-                }, 1000);
-            }, 7000);
+            let moveInterval;
 
-            // ✅ Redirect Menu Button
-            document.getElementById("menuBtn").addEventListener("click", () => {
-                window.location.href = "menu.html";
-            });
-
-            // Stickman Movement
-            let position = 20;
-            function moveStickman(direction) {
-                if (direction === "left" && position > 0) {
-                    position -= 15;
-                } else if (direction === "right" && position < window.innerWidth - 70) {
-                    position += 15;
+            // Function to move the character and the background
+            function moveCharacter(direction) {
+                if (direction === "right") {
+                    if (stickmanPos < screenMiddle) {
+                        stickmanPos += moveSpeed;
+                        stickman.style.left = `${stickmanPos}px`;
+                    } else if (backgroundPos > maxBackgroundMove) {
+                        backgroundPos -= moveSpeed;
+                        gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
+                    }
+                } else if (direction === "left") {
+                    if (backgroundPos < 0) {
+                        backgroundPos += moveSpeed;
+                        gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
+                    } else if (stickmanPos > 50) {
+                        stickmanPos -= moveSpeed;
+                        stickman.style.left = `${stickmanPos}px`;
+                    }
                 }
-
-                // Move Stickman
-                stickman.style.left = `${position}px`;
-
-                // ✅ Play Sound Effect
-                stepSound.currentTime = 0;
-                stepSound.play();
             }
 
-            // Button Click Movement
-            document.getElementById("leftBtn").addEventListener("click", () => moveStickman("left"));
-            document.getElementById("rightBtn").addEventListener("click", () => moveStickman("right"));
-
-            // Keyboard Movement
-            document.addEventListener("keydown", (event) => {
-                if (event.key === "ArrowLeft") moveStickman("left");
-                if (event.key === "ArrowRight") moveStickman("right");
+            // Start moving on button press (Mouse Hold)
+            leftBtn.addEventListener("mousedown", () => {
+                moveInterval = setInterval(() => moveCharacter("left"), 50);
             });
+            rightBtn.addEventListener("mousedown", () => {
+                moveInterval = setInterval(() => moveCharacter("right"), 50);
+            });
+
+            // Stop moving on button release
+            leftBtn.addEventListener("mouseup", () => clearInterval(moveInterval));
+            rightBtn.addEventListener("mouseup", () => clearInterval(moveInterval));
+
+            // Stop moving on mouse leave
+            leftBtn.addEventListener("mouseleave", () => clearInterval(moveInterval));
+            rightBtn.addEventListener("mouseleave", () => clearInterval(moveInterval));
+
+            // Button Click Events (For single-click functionality)
+            rightBtn.addEventListener("click", () => moveCharacter("right"));
+            leftBtn.addEventListener("click", () => moveCharacter("left"));
+
+            // Keyboard Controls
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowRight") moveCharacter("right");
+                if (event.key === "ArrowLeft") moveCharacter("left");
+            });
+
+            // Fade Transition Logic for the Screens
+            setTimeout(() => {
+                // Fade out the logo screen after 2 seconds
+                logoScreen.style.opacity = '0';
+            }, 2000);
+
+            setTimeout(() => {
+                // Fade in the chapter screen after 2 seconds (total 4 seconds)
+                chapterScreen.style.opacity = '1';
+            }, 4000);
+
+            setTimeout(() => {
+                // Fade out the chapter screen after 2 more seconds (total 6 seconds)
+                chapterScreen.style.opacity = '0';
+            }, 6000);
+
+            setTimeout(() => {
+                // Finally, fade in the game screen after 2 more seconds (total 8 seconds)
+                gameContainer.style.opacity = '1';
+            }, 8000);
+
+            // Fade in the control buttons (left and right arrows) after the game screen appears
+            setTimeout(() => {
+                controls.style.opacity = '1';
+                controls.style.visibility = 'visible'; // Make sure the buttons are visible
+            }, 8000); // The control buttons will fade in after 8 seconds (same time as the game scene)
         });
     </script>
 
