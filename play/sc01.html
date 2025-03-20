@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIRE - Disaster Ready</title>
+    <link href="/src/app.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=PT+Sans+Narrow:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-sansnarrow">
+        
+    <!-- Navigation Bar (Fixed at the top) -->
+    <nav class="fixed top-0 left-0 w-full bg-white z-50 flex border border-gray-300">
+        <!-- Left: DIRE Logo -->
+        <div class="flex-none mr-auto py-2 px-4">
+            <img class="h-10" src="/assets/logo.png" alt="DIRE Logo">
+        </div>
+
+        <!-- Right: Sections Button -->
+        <div class="flex space-x-3 text-sm">
+            <input type="checkbox" name="right-nav" id="right-nav" class="hidden peer/right-nav">
+            <label for="right-nav" class="flex items-center rounded-full border border-white hover:border-black p-2 m-3">
+                <span class="sr-only">Open menu</span>
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+            </label>
+            <div id="mainMenu" class="hidden
+            peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
+                <div class="flex absolute right-0 top-0">
+                    <label for="right-nav" class="justify-end ml-auto text-right m-0 p-2 items-center rounded-full hover:bg-gray-100">
+                        <span class="sr-only">Close Nav</span>
+                        <svg class="size-4" fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                    </label>
+                </div>
+                <a href="/dummy.html#home" class="nav-link py-4 px-1 uppercase transition-colors duration-300">Home</a>
+                <a href="/dummy.html#resources" class="nav-link py-4 px-1 uppercase transition-colors duration-300">Resources</a>
+                <a href="/dummy.html#about-us" class="nav-link py-4 px-1 uppercase transition-colors duration-300">About Us</a>
+                <a href="/play.html" class="nav-link relative flex justify-center items-center w-[calc(2_*_2rem)] h-[calc(1_*_2rem)] mt-3 mr-5 py-2 uppercase text-white bg-red-500 border-2 border-black rounded-lg transition-colors duration-300">Play</a>
+            </div>
+            <label for="right-nav" class="hidden peer-checked/right-nav:block fixed inset-0 bg-white opacity-0"></label>
+        </div>
+    </nav>
+
+<!-- Main Content -->
+    <section class="mt-15">
+        <p>
+            Hello
+        </p>
+    </section>
+
+    <script src="/src/main.js"></script>
+</body>
+
+</html>
