@@ -125,25 +125,10 @@
         nav img {
             height: 40px;
         }
-
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 25px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            height: 3px;
-            background-color: black;
-            width: 100%;
-        }
     </style>
 </head>
-<body>
 
+<body>
     <!-- Logo and Chapter Screens (Initially Visible) -->
     <div id="logo-screen" class="fade-image" style="background-image: url('./assets/play-cover-2.png');"></div>
     <div id="chapter-screen" class="fade-image" style="background-image: url('./assets/chapter-1.png');"></div>
@@ -157,11 +142,7 @@
 
         <!-- Right: Hamburger Menu (Smaller and Centered) -->
         <div class="flex-none py-2 px-4 flex items-center justify-center">
-            <div class="hamburger flex flex-col justify-between items-center w-5 h-5 cursor-pointer">
-                <div class="bg-black h-1 w-full"></div>
-                <div class="bg-black h-1 w-full"></div>
-                <div class="bg-black h-1 w-full"></div>
-            </div>
+            <img src="assets/menu-icon.png" alt="Menu Icon" class="w-6 h-6 cursor-pointer" onclick="window.location.href='play-menu.html'">
         </div>
     </nav>
 
@@ -182,7 +163,6 @@
         </button>
     </div>
 
-    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const gameContainer = document.getElementById("game");
@@ -287,6 +267,5 @@
             }, 8000); // The control buttons will fade in after 8 seconds (same time as the game scene)
         });
     </script>
-
 </body>
 </html>
