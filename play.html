@@ -25,19 +25,6 @@
             transition: opacity 2s ease-in-out;
         }
 
-        /* Play Cover */
-        #logo-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 1;
-            transition: opacity 2s ease-in-out;
-        }
-
         /* Chapter 1 */
         #chapter-screen {
             position: absolute;
@@ -130,7 +117,6 @@
 
 <body>
     <!-- Logo and Chapter Screens (Initially Visible) -->
-    <div id="logo-screen" class="fade-image" style="background-image: url('./assets/play-cover-2.png');"></div>
     <div id="chapter-screen" class="fade-image" style="background-image: url('./assets/chapter-1.png');"></div>
 
     <!-- Navigation Bar (Fixed at the top) -->
@@ -169,7 +155,6 @@
             const stickman = document.getElementById("stickman");
             const leftBtn = document.getElementById("leftBtn");
             const rightBtn = document.getElementById("rightBtn");
-            const logoScreen = document.getElementById("logo-screen");
             const chapterScreen = document.getElementById("chapter-screen");
             const controls = document.getElementById("controls");
             const continueBtn = document.getElementById("continue-btn");
@@ -241,30 +226,25 @@
 
             // Fade Transition Logic for the Screens
             setTimeout(() => {
-                // Fade out the logo screen after 2 seconds
-                logoScreen.style.opacity = '0';
+                // Fade in the chapter screen after 2 seconds (total 2 seconds)
+                chapterScreen.style.opacity = '1';
             }, 2000);
 
             setTimeout(() => {
-                // Fade in the chapter screen after 2 seconds (total 4 seconds)
-                chapterScreen.style.opacity = '1';
+                // Fade out the chapter screen after 2 more seconds (total 4 seconds)
+                chapterScreen.style.opacity = '0';
             }, 4000);
 
             setTimeout(() => {
-                // Fade out the chapter screen after 2 more seconds (total 6 seconds)
-                chapterScreen.style.opacity = '0';
-            }, 6000);
-
-            setTimeout(() => {
-                // Finally, fade in the game screen after 2 more seconds (total 8 seconds)
+                // Finally, fade in the game screen after 2 more seconds (total 6 seconds)
                 gameContainer.style.opacity = '1';
-            }, 8000);
+            }, 6000);
 
             // Fade in the control buttons (left and right arrows) after the game screen appears
             setTimeout(() => {
                 controls.style.opacity = '1';
                 controls.style.visibility = 'visible'; // Make sure the buttons are visible
-            }, 8000); // The control buttons will fade in after 8 seconds (same time as the game scene)
+            }, 6000); // The control buttons will fade in after 6 seconds (same time as the game scene)
         });
     </script>
 </body>
