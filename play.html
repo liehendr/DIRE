@@ -54,7 +54,7 @@
         /* Character (Stickman) */
         #stickman {
             position: absolute;
-            bottom: 110px;
+            bottom: 100px;
             left: 50px; /* Starts on the left */
             width: 50px;
             height: 100px;
@@ -89,6 +89,23 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+        }
+
+        /* Continue Button (Initially hidden) */
+        #continue-btn {
+            width: 150px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: white;
+            border: 3px solid black;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
 
         /* Navigation Bar */
@@ -158,8 +175,14 @@
     <div id="controls">
         <button id="leftBtn" class="control-btn">←</button>
         <button id="rightBtn" class="control-btn">→</button>
+
+        <!-- Continue Button (Initially Hidden) -->
+        <button id="continue-btn" class="control-btn" style="display: none; position: fixed; left: 50%; transform: translateX(-50%); top: 50%; font-size: 18px; border: 3px solid black; background-color: white; color: black; font-weight: bold;">
+            GO INSIDE
+        </button>
     </div>
 
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const gameContainer = document.getElementById("game");
@@ -169,22 +192,25 @@
             const logoScreen = document.getElementById("logo-screen");
             const chapterScreen = document.getElementById("chapter-screen");
             const controls = document.getElementById("controls");
+            const continueBtn = document.getElementById("continue-btn");
 
             let stickmanPos = 50;
             let backgroundPos = 0;
-            const screenMiddle = window.innerWidth / 2;
+            const screenWidth = window.innerWidth;
             const moveSpeed = 10;
             const maxBackgroundMove = -window.innerWidth;
+            const triggerPosMin = 640;
+            const triggerPosMax = 720;
 
             let moveInterval;
 
             // Function to move the character and the background
             function moveCharacter(direction) {
                 if (direction === "right") {
-                    if (stickmanPos < screenMiddle) {
+                    if (stickmanPos < 750) { // Move stickman first until reaching 700px
                         stickmanPos += moveSpeed;
                         stickman.style.left = `${stickmanPos}px`;
-                    } else if (backgroundPos > maxBackgroundMove) {
+                    } else if (backgroundPos > maxBackgroundMove) { // Scroll background when stickman reaches 700px
                         backgroundPos -= moveSpeed;
                         gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
                     }
@@ -196,6 +222,14 @@
                         stickmanPos -= moveSpeed;
                         stickman.style.left = `${stickmanPos}px`;
                     }
+                }
+
+                // Show Continue button when the stickman is between 500px and 550px
+                if (stickmanPos >= triggerPosMin && stickmanPos <= triggerPosMax) {
+                    continueBtn.style.display = 'block';  // Show the continue button
+                    continueBtn.style.opacity = '1';      // Fade in
+                } else {
+                    continueBtn.style.display = 'none';  // Hide the continue button
                 }
             }
 
