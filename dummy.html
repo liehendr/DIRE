@@ -7,7 +7,7 @@
     <link href="/src/app.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=PT+Sans+Narrow:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 
 <body class="font-sansnarrow">
@@ -26,7 +26,7 @@
                 <span class="sr-only">Open menu</span>
                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
             </label>
-            <div id="mainMenu" class="hidden sm:flex sm:space-x-3
+            <div id="mainMenu" class="hidden sm:flex sm:space-x-4
             peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
                 <div class="flex absolute right-0 top-0">
                     <label for="right-nav" class="justify-end ml-auto sm:hidden text-right m-0 p-2 items-center rounded-full hover:bg-gray-100">
@@ -45,110 +45,183 @@
 
 <!-- Main Content -->
     <!-- Home Section -->
-    <section id="home" class="w-auto h-90 flex flex-col lg:flex-row items-center relative">
+    <section id="home" class="w-full h-90 flex flex-col justify-center items-center text-center relative">
         
-        <!-- Logo -->
-        <div class="w-full lg:w-auto absolute flex justify-center">
+        <!-- Cover Image -->
+        <div class="w-full absolute flex justify-center">
             <img src="./assets/home-cover-3.png" alt="DIRE Cover">
         </div>
         
-         <!-- Desc -->
-        <div class="w-full text-center lg:text-left lg:left-[100px] bottom-[-50px]">
-            <p class="text-md text-black mt-105 lg:mt-155 lg:ml-94 max-w-lg mx-auto lg:mx-0">
+        <!-- Description -->
+        <div class="w-full flex justify-center items-center">
+            <p class="text-md text-black mt-65 lg:mt-85 max-w-lg px-4">
                 DIRE is a platform that aims to enhance disaster preparedness among tourists in Bali with interactive scenarios that educate on earthquake and tsunami disaster risks, and safety measures available to increase the tourists’ chances of survival.
-             </p>
-         </div>
-        
-        <!-- blank section -->
-        <div class="h-70">
+            </p>
         </div>
+        
+        <!-- Blank Section -->
+        <div class="h-70"></div>
     </section>
 
 
-    <!-- Resources Section -->
-    <section id="resources" class="container mr-auto lg:mx-auto max-w-5xl px-8 pt-40 lg:pt-65 block">
-            
-        <!-- Mobile: Stacks with Image Below Title | Desktop: Side-by-Side -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8">
-            <!-- Title -->
-            <div class="lg:w-2/3">
-                <h1 class="text-[70px] lg:text-[125px] text-center lg:text-left font-bold text-red-600">
-                    RESOURCES
-                </h1>
 
-            <!-- Image + Download -->
-            <div class="lg:hidden flex flex-col items-center mt-6">
+    <!-- Resources Section -->
+    <section id="resources" class="container mr-auto lg:mx-auto max-w-5xl px-8 pt-22 block">
+
+        <!-- Title -->
+        <div class="lg:w-auto text-center lg:text-left">
+            <h1 class="text-[70px] lg:text-[125px] font-bold text-red-600">
+                Disaster? Ready!
+            </h1>
+        </div>
+
+        <!-- E-Book + Description Section -->
+        <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-8 mt-2">
+
+            <!-- Desc -->
+            <div class="w-full lg:w-2/3 text-justify lg:text-left text-center">
+                
+                <!-- Header -->
+                <h2 class="text-[30px] lg:text-[50px] font-bold text-red-600 mt-2">Earthquake & Tsunami Preparedness</h2>
+                <p class="text-md mt-2 text-gray-700">Disasters don’t wait. Neither should you. When the ground shakes or the ocean pulls back, your actions can mean the difference between survival and tragedy. Follow these steps to stay safe and protect those around you.</p>
+                
+                <!-- Earthquake Safety -->
+                <h3 class="mt-4 text-xl font-semibold text-red-600">During an Earthquake: Drop, Cover, Hold!</h3>
+                <ul class="text-md mt-2 list-disc list-inside text-gray-700">
+                    <li><strong>DROP</strong> to your hands and knees to prevent being knocked over.</li>
+                    <li><strong>COVER</strong> your head and neck under a sturdy table or against an interior wall.</li>
+                    <li><strong>HOLD ON</strong> until the shaking stops. Stay put—running outside increases your risk of injury.</li>
+                </ul>
+                
+                <!-- Warning Box -->
+                <div class="mt-4 p-4 bg-white shadow-lg border-l-4 border-red-600">
+                    <p class="text-black font-bold">🚫 <span class="font-extrabold">DON’T</span> use elevators. 🚫 <span class="font-extrabold">DON’T</span> stand in doorways. 🚫 <span class="font-extrabold">DON’T</span> panic.</p>
+                </div>
+                
+                <!-- Tsunami Alert -->
+                <h3 class="mt-4 text-xl font-semibold text-red-600">After the Shaking Stops: Tsunami Risk Alert!</h3>
+                <p class="mt-2 text-gray-700">If you are in a coastal area, move quickly—a tsunami could follow.</p>
+                
+                <h4 class="mt-2 text-lg font-semibold text-red-600">Signs of a tsunami:</h4>
+                <ul class="mt-2 list-disc list-inside text-gray-700">
+                    <li>Strong or long earthquake (lasting more than 20 seconds).</li>
+                    <li>Sudden ocean retreat or rising water levels.</li>
+                    <li>A loud roar from the sea.</li>
+                </ul>
+                
+                <!-- Tsunami Evacuation -->
+                <h3 class="mt-4 text-xl font-semibold text-red-600">Tsunami Evacuation: Move to Higher Ground!</h3>
+                <ul class="mt-2 list-disc list-inside text-gray-700">
+                    <li>Head to <strong>designated tsunami evacuation zones</strong> or at least 4th floor of a reinforced building if no high ground is available.</li>
+                    <li>If you’re at the beach and the water pulls back, <strong>run inland immediately</strong>—every second counts.</li>
+                    <li>Stay away from rivers and waterways leading to the ocean.</li>
+                </ul>
+                
+                <!-- Pro Tip Box -->
+                <div class="mt-4 p-4 bg-white shadow-lg border-l-4 border-yellow-500">
+                    <p class="text-black font-semibold">💡 PRO TIP: Know your escape routes BEFORE disaster strikes. Practice your plan.</p>
+                </div>
+                
+                <!-- Footer -->
+                <p class="mt-4 font-italic text-black">Disasters don’t come with a warning—but preparedness saves lives. Act fast, stay alert, and always prioritize safety. <strong>Your survival starts now.</strong></p>
+            </div>
+
+            <!-- E-Book -->
+            <div class="w-full lg:w-1/3 flex flex-col items-center lg:items-starts mt-2 lg:mt-5">
                 <div class="bg-gray-300 w-[300px] h-[450px] flex items-center justify-center">
                     <span class="text-gray-500">[Images]</span>
                 </div>
-                <p class="text-sm text-blue-600 mt-2 text-center cursor-pointer hover:underline">
-                    Click here to download
-                </p>
+                <p class="text-md text-black mt-2 text-center lg:text-center">
+                    Learn more? <span class="text-blue-600 cursor-pointer hover:underline">Download here</span>
+                </p>                
             </div>
-
-            <!-- Desc -->
-            <div class="mt-4 text-justify lg:text-justify">
-                <p class="leading-relaxed">What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                
-                <p class="leading-relaxed mt-4">Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                
-                <p class="leading-relaxed mt-4">Where does it come from? Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
-            </div>
-        </div>
-
-            <!-- Right: Rectangle + Download Text (Desktop Only) -->
-            <div class="lg:w-1/3 hidden lg:flex flex-col items-center">
-                <div class="bg-gray-300 w-[300px] h-[450px] flex items-center justify-center">
-                    <span class="text-gray-500">[Image]</span>
-                </div>
-                <p class="text-sm text-gray-600 mt-2 text-center w-full hover:underline">
-                    Click here to download
-                </p>
-            </div>
-
         </div>
     </section>
 
 
     <!-- About Us Section -->
-    <section id="about-us" class="container mr-auto lg:mx-auto max-w-5xl px-8 pt-10 block">
+    <section id="about-us" class="container mx-auto max-w-5xl px-4 pt-10 block">
         <!-- Title -->
         <div>
-            <h1 class="text-[70px] lg:text-[125px] text-center font-bold text-red-600">
+            <h1 class="text-[70px] md:text-[70px] lg:text-[125px] text-center font-bold text-red-600">
                 ABOUT US
             </h1>
         </div>
         
-        <!-- Desc -->
-        <div class="mt-4 lg:w-auto mx-auto text-justify lg:text-center">
-            <p class="leading-relaxed">What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <!-- Description -->
+        <div class="mt-6 lg:w-auto mx-auto text-justify">
+            <p class="leading-relaxed text-sm sm:text-base lg:text-lg">
+                DIRE, which means presaging disaster, is an interactive web-based platform designed to empower tourists visiting Bali with the knowledge needed to respond effectively to earthquake and tsunami disasters. True to its name, the web app equips users to confidently navigate DIRE situations, turning potential disasters into well-managed responses. Through engaging and interactive scenarios, DIRE educates users on the risks associated with these natural disasters, while providing crucial safety measures that can increase the chances of survival during an event. Our goal is to bridge the gap between disaster preparedness education and travelers, offering a user-friendly and informative experience that ensures visitors understand the importance of being prepared when traveling to areas vulnerable to natural disasters. Our slogan, *Disaster? Ready!* reflects our commitment to equipping tourists with the confidence and knowledge needed to stay safe in the event of an earthquake or tsunami, turning uncertainty into preparedness.
+            </p>
+            <p class="leading-relaxed mt-6 text-sm sm:text-base lg:text-lg">
+                To ensure that the content on DIRE is accurate and up-to-date, we have partnered with BPBD Bali (Bali Regional Disaster Management Agency) to source official materials and insights on earthquake and tsunami mitigation strategies. BPBD Bali's expertise in disaster risk management has been invaluable in creating realistic, region-specific scenarios that reflect the unique hazards and emergency protocols in Bali. Through this collaboration, we aim to provide tourists with authentic, actionable information that aligns with local disaster preparedness standards. BPBD Bali's contribution not only strengthens the educational impact of DIRE but also helps reinforce the importance of community resilience and effective disaster management in protecting both locals and visitors alike.
+            </p>
+        </div>
+
+        <!-- Upper Line -->
+        <div class="flex justify-center items-center mt-6">
+            <div class="w-full border-t-4 border-black mx-2"></div>
+        </div>
+
+        <!-- Contacts Section -->
+        <div class="flex flex-nowrap justify-center items-center text-center gap-2 sm:gap-4 md:gap-10 lg:gap-16 mt-6 overflow-x-auto">
             
-            <p class="leading-relaxed mt-4">Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            <!-- BMKG -->
+            <div class="flex items-center gap-1 sm:gap-2">
+                <h2 class="text-xs sm:text-sm lg:text-base font-semibold">BMKG</h2>
+                <a href="https://www.bmkg.go.id" target="_blank" class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs font-semibold">
+                    1
+                </a>
+                <a href="https://www.instagram.com/infobmkg/" target="_blank" class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs font-semibold">
+                    2
+                </a>
+            </div>
+
+            <!-- BMKG (III) Denpasar -->
+            <div class="flex items-center gap-1 sm:gap-2">
+                <h2 class="text-xs sm:text-sm lg:text-base font-semibold">BMKG (III) Denpasar</h2>
+                <a href="https://bbmkg3.bmkg.go.id/" target="_blank" class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs font-semibold">
+                    3
+                </a>
+                <a href="https://www.instagram.com/bmkgbali/" target="_blank" class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs font-semibold">
+                    4
+                </a>
+            </div>
+
+            <!-- BPBD Bali -->
+            <div class="flex items-center gap-1 sm:gap-2">
+                <h2 class="text-xs sm:text-sm lg:text-base font-semibold">BPBD Bali</h2>
+                <a href="https://bpbd.baliprov.go.id/" target="_blank" class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs font-semibold">
+                    5
+                </a>
+                <a href="https://www.instagram.com/bpbdbali/" target="_blank" class="w-6 h-6 sm:w-8 sm:h-8 bg-gray-300 rounded-full flex items-center justify-center text-xs font-semibold">
+                    6
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Line -->
+        <div class="flex justify-center items-center mt-6">
+            <div class="w-full border-t-4 border-black mx-2"></div>
         </div>
     </section>
 
+
     <!-- Play Section -->
     <section id="play" class="mx-auto container pt-10">
-        <!-- Title
+        <!-- Title -->
         <div>
             <h1 class="text-[70px] lg:text-[125px] text-center font-bold text-red-600">
-                Disaster Ready!
+                Are You Ready?
             </h1>
-        </div> -->
+        </div>
 
         <!--Box Rectangle-->
-        <div class="bg-white relative pb-8 lg:pb-16 m-2 sm:m-8 lg:m-19 shadow-gray-500 shadow-md flex flex-col items-center">
+        <div class="bg-white relative pb-6 lg:pb-15 m-4 sm:m-8 lg:m-19 shadow-gray-500 shadow-md flex flex-col items-center">
             <!-- Cover -->
-            <div class="mt-8 py-20">
+            <div class="mt-2 py-12">
                 <img src="./assets/play-cover.png" alt="Play Cover" class="object-contain">
             </div>
-
-            <!-- Text
-            <div class="mt-12 lg:mt-20">
-                <h1 class="text-[10px] lg:text-[20px]">
-                    or click "Spacebar"
-                </h1>
-            </div> -->
 
             <!-- Button -->
             <div class="mt-1 lg:mt-2">
