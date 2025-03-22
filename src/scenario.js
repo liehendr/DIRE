@@ -59,30 +59,159 @@ function injectHTML(id,item) {
  * States
  */
 
+let searchParams = new URLSearchParams(window.location.search);
+console.log('search params is',searchParams.get('scenario'))
+
+const defaultScenario = 'Hotel'
+
 const scenarios = {
-    'sc01': {
-        'sq1_1': {
+    'sc01': [
+        {
             'name': 'Hotel Room',
             'video': '77-2l6OOa4c',
             'options': [],
         },
-        'sq1_2': {
-            'name': null,
-            'video': null,
+        {
+            'name': 'Hotel Room Success',
+            'video': 'sAKpqJpmhOo',
             'options': [],
         },
-        'sq1_3': {
-            'name': null,
-            'video': null,
+        {
+            'name': 'Hotel Room Failed',
+            'video': 'wwV5lInpou4',
             'options': [],
         },
-    },
-    'sc02': {},
-    'sc03': {},
-    'sc04': {},
+    ],
+    'sc02': [
+        {
+            'name': 'Leave Hotel Room',
+            'video': '77-2l6OOa4c',
+            'options': [],
+        },
+        {
+            'name': 'Leave Hotel Room Success',
+            'video': 'sAKpqJpmhOo',
+            'options': [],
+        },
+        {
+            'name': 'Leave Hotel Room Failed',
+            'video': 'wwV5lInpou4',
+            'options': [],
+        },
+    ],
+    'sc03': [
+        {
+            'name': 'Leave Building',
+            'video': '77-2l6OOa4c',
+            'options': [],
+        },
+        {
+            'name': 'Leave Building Success',
+            'video': 'sAKpqJpmhOo',
+            'options': [],
+        },
+        {
+            'name': 'Leave Building Failed',
+            'video': 'wwV5lInpou4',
+            'options': [],
+        },
+    ],
+    'sc04': [
+        {
+            'name': 'Respond To Tsunami Warning',
+            'video': '77-2l6OOa4c',
+            'options': [],
+        },
+        {
+            'name': 'Respond To Tsunami Warning Success',
+            'video': 'sAKpqJpmhOo',
+            'options': [],
+        },
+        {
+            'name': 'Respond To Tsunami Warning Failed',
+            'video': 'wwV5lInpou4',
+            'options': [],
+        },
+    ],
 }
 
-console.log(scenarios.sc01.sq1_1.video)
+const sequenceStatus = [ 'default', 'correct', 'incorrect' ]
+
+const defaultScenarioProgress = {
+    'Hotel': {
+        'name': 'Hotel',
+        'data': {
+            'sc01': 'default',
+            'sc02': 'default',
+            'sc03': 'default',
+            'sc04': 'default',
+        }
+    },
+    'Beach': {
+        'name': 'Beach',
+        'data': {
+            'sc01': 'default',
+            'sc02': 'default',
+            'sc03': 'default',
+            'sc04': 'default',
+        }
+    },
+    'Hello': {
+        'name': 'Hello',
+        'data': {
+            'sc01': 'default',
+            'sc02': 'default',
+            'sc03': 'default',
+            'sc04': 'default',
+        }
+    },
+    'Safari': {
+        'name': 'Safari',
+        'data': {
+            'sc01': 'default',
+            'sc02': 'default',
+            'sc03': 'default',
+            'sc04': 'default',
+        }
+    },
+}
+
+
+/**
+ * When first loading, check session storage for saves
+ * If saves is not present, store defaultScenarioProgress
+ * if saves is present, load it
+ */
+
+function setSaves(data) {
+    sessionStorage.setItem('saves',JSON.stringify(data));
+}
+
+function getSaves() {
+    let data = sessionStorage.getItem('saves');
+    return JSON.parse(data);
+}
+
+function scenarioSavesInit() {
+    let saves;
+    if (!getSaves()) {
+        setSaves(defaultScenarioProgress);
+    }
+    // let storage = sessionStorage.getItem('saves')
+    saves = getSaves();
+    return saves;
+}
+
+function populateState(scenarioName, loaded) {
+    let state;
+    if (scenarioName) {
+        state = loaded[scenarioName];
+    } else {
+        state = loaded[defaultScenario];
+    }
+
+    return state;
+}
 
 /**
  * Youtube section
@@ -98,11 +227,11 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
 let player;
-function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady(scenario = 'sc01', scIndex = 0) {
     player = new YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: scenarios.sc01.sq1_1.video,
+        videoId: scenarios[scenario][scIndex].video,
         playerVars: {
             'playsinline': 1
         },
@@ -118,17 +247,29 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-let done = false;
+// The API calls this function when the player's state changes.
+// The function indicates that when playing a video (state=1),
+// the player should play for six seconds and then stop.
+let videoIsFinished = false;
 function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        done = true;
+    if (event.data == YT.PlayerState.ENDED && !videoIsFinished) {
+        launchMenu();
+        videoIsFinished = true;
     }
 }
 
 function stopVideo() {
     player.stopVideo();
 }
+
+function launchMenu() {
+    injectHTML('menu',`<div>Menu is run</div>`);
+}
+
+
+/**
+ * Invocations
+ */
+
+let progress = scenarioSavesInit();
+let current = populateState(searchParams.get('scenario'),scenarioSavesInit());
