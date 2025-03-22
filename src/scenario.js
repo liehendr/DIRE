@@ -65,74 +65,76 @@ console.log('search params is',searchParams.get('scenario'))
 const defaultScenario = 'Hotel'
 
 const scenarios = {
-    'sc01': [
-        {
-            'name': 'Hotel Room',
-            'video': '77-2l6OOa4c',
-            'options': [],
-        },
-        {
-            'name': 'Hotel Room Success',
-            'video': 'sAKpqJpmhOo',
-            'options': [],
-        },
-        {
-            'name': 'Hotel Room Failed',
-            'video': 'wwV5lInpou4',
-            'options': [],
-        },
-    ],
-    'sc02': [
-        {
-            'name': 'Leave Hotel Room',
-            'video': '77-2l6OOa4c',
-            'options': [],
-        },
-        {
-            'name': 'Leave Hotel Room Success',
-            'video': 'sAKpqJpmhOo',
-            'options': [],
-        },
-        {
-            'name': 'Leave Hotel Room Failed',
-            'video': 'wwV5lInpou4',
-            'options': [],
-        },
-    ],
-    'sc03': [
-        {
-            'name': 'Leave Building',
-            'video': '77-2l6OOa4c',
-            'options': [],
-        },
-        {
-            'name': 'Leave Building Success',
-            'video': 'sAKpqJpmhOo',
-            'options': [],
-        },
-        {
-            'name': 'Leave Building Failed',
-            'video': 'wwV5lInpou4',
-            'options': [],
-        },
-    ],
-    'sc04': [
-        {
-            'name': 'Respond To Tsunami Warning',
-            'video': '77-2l6OOa4c',
-            'options': [],
-        },
-        {
-            'name': 'Respond To Tsunami Warning Success',
-            'video': 'sAKpqJpmhOo',
-            'options': [],
-        },
-        {
-            'name': 'Respond To Tsunami Warning Failed',
-            'video': 'wwV5lInpou4',
-            'options': [],
-        },
-    ],
+    'Hotel': {
+        'sq01': [
+            {
+                'name': 'Hotel Room',
+                'video': '77-2l6OOa4c',
+                'options': [],
+            },
+            {
+                'name': 'Hotel Room Success',
+                'video': 'sAKpqJpmhOo',
+                'options': [],
+            },
+            {
+                'name': 'Hotel Room Failed',
+                'video': 'wwV5lInpou4',
+                'options': [],
+            },
+        ],
+        'sq02': [
+            {
+                'name': 'Leave Hotel Room',
+                'video': '77-2l6OOa4c',
+                'options': [],
+            },
+            {
+                'name': 'Leave Hotel Room Success',
+                'video': 'sAKpqJpmhOo',
+                'options': [],
+            },
+            {
+                'name': 'Leave Hotel Room Failed',
+                'video': 'wwV5lInpou4',
+                'options': [],
+            },
+        ],
+        'sq03': [
+            {
+                'name': 'Leave Building',
+                'video': '77-2l6OOa4c',
+                'options': [],
+            },
+            {
+                'name': 'Leave Building Success',
+                'video': 'sAKpqJpmhOo',
+                'options': [],
+            },
+            {
+                'name': 'Leave Building Failed',
+                'video': 'wwV5lInpou4',
+                'options': [],
+            },
+        ],
+        'sq04': [
+            {
+                'name': 'Respond To Tsunami Warning',
+                'video': '77-2l6OOa4c',
+                'options': [],
+            },
+            {
+                'name': 'Respond To Tsunami Warning Success',
+                'video': 'sAKpqJpmhOo',
+                'options': [],
+            },
+            {
+                'name': 'Respond To Tsunami Warning Failed',
+                'video': 'wwV5lInpou4',
+                'options': [],
+            },
+        ],
+    }
 }
 
 const sequenceStatus = [ 'default', 'correct', 'incorrect' ]
@@ -141,37 +143,37 @@ const defaultScenarioProgress = {
     'Hotel': {
         'name': 'Hotel',
         'data': {
-            'sc01': 'default',
-            'sc02': 'default',
-            'sc03': 'default',
-            'sc04': 'default',
+            'sq01': 'default',
+            'sq02': 'default',
+            'sq03': 'default',
+            'sq04': 'default',
         }
     },
     'Beach': {
         'name': 'Beach',
         'data': {
-            'sc01': 'default',
-            'sc02': 'default',
-            'sc03': 'default',
-            'sc04': 'default',
+            'sq01': 'default',
+            'sq02': 'default',
+            'sq03': 'default',
+            'sq04': 'default',
         }
     },
     'Hello': {
         'name': 'Hello',
         'data': {
-            'sc01': 'default',
-            'sc02': 'default',
-            'sc03': 'default',
-            'sc04': 'default',
+            'sq01': 'default',
+            'sq02': 'default',
+            'sq03': 'default',
+            'sq04': 'default',
         }
     },
     'Safari': {
         'name': 'Safari',
         'data': {
-            'sc01': 'default',
-            'sc02': 'default',
-            'sc03': 'default',
-            'sc04': 'default',
+            'sq01': 'default',
+            'sq02': 'default',
+            'sq03': 'default',
+            'sq04': 'default',
         }
     },
 }
@@ -227,11 +229,11 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
 let player;
-function onYouTubeIframeAPIReady(scenario = 'sc01', scIndex = 0) {
+function onYouTubeIframeAPIReady(scenario = 'sq01', scIndex = 0) {
     player = new YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: scenarios[scenario][scIndex].video,
+        videoId: scenarios[current.name][scenario][scIndex].video,
         playerVars: {
             'playsinline': 1
         },
