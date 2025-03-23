@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrolling Background Game</title>
+    <title>Play DIRE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body, html {
@@ -12,29 +12,14 @@
             height: 100%;
         }
 
-        /* Game Scene (Scrollable Background) */
+        /* Game Scene*/
         #game {
-            width: 200vw;
+            width: 100vw;
             height: 100vh;
-            background: url('/assets/play-background.png') no-repeat;
-            background-size: cover;
-            background-position: 0 0;
+            background: url('/assets/play-bg-1.png') no-repeat;
+            background-size: cover; /* Fixed background size */
             position: relative;
-            overflow: hidden;
             opacity: 0; /* Initially hidden */
-            transition: opacity 2s ease-in-out;
-        }
-
-        /* Play Cover */
-        #logo-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 1;
             transition: opacity 2s ease-in-out;
         }
 
@@ -91,19 +76,9 @@
             cursor: pointer;
         }
 
-        /* Continue Button (Initially hidden) */
+        /* Continue Button (Initially Hidden) */
         #continue-btn {
-            width: 150px;
-            height: 50px;
             border-radius: 10px;
-            background-color: white;
-            border: 3px solid black;
-            font-size: 20px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -130,18 +105,17 @@
 
 <body>
     <!-- Logo and Chapter Screens (Initially Visible) -->
-    <div id="logo-screen" class="fade-image" style="background-image: url('/assets/play-cover-2.png');"></div>
     <div id="chapter-screen" class="fade-image" style="background-image: url('/assets/chapter-1.png');"></div>
 
     <!-- Navigation Bar (Fixed at the top) -->
-    <nav>
+    <nav class="fixed top-0 left-0 w-full bg-white flex shadow-md z-50">
         <!-- Left: DIRE Logo -->
-        <div class="flex-none mr-auto py-2 px-4">
+        <div class="flex-none mr-auto">
             <img class="h-10" src="/assets/logo.png" alt="DIRE Logo">
         </div>
 
-        <!-- Right: Hamburger Menu (Smaller and Centered) -->
-        <div class="flex-none py-2 px-4 flex items-center justify-center">
+        <!-- Right: Hamburger Menu -->
+        <div class="flex-none">
             <img src="/assets/menu-icon.png" alt="Menu Icon" class="w-6 h-6 cursor-pointer" onclick="window.location.href='menu.html'">
         </div>
     </nav>
@@ -158,47 +132,38 @@
         <button id="rightBtn" class="control-btn">→</button>
 
         <!-- Continue Button (Initially Hidden) -->
-        <button id="continue-btn" class="control-btn" style="display: none; position: fixed; left: 50%; transform: translateX(-50%); top: 50%; font-size: 18px; border: 3px solid black; background-color: white; color: black; font-weight: bold;">
+        <button id="continue-btn" class="control-btn" style="display: none; position: fixed; left: 50%; transform: translateX(-50%); top: 50%; font-size: 32px; width: 250px; height: 60px; border: 3px solid black; background-color: white; color: black; font-weight: bold; text-align: center; display: flex; justify-content: center; align-items: center;">
             GO INSIDE
-        </button>
+        </button>        
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const gameContainer = document.getElementById("game");
             const stickman = document.getElementById("stickman");
             const leftBtn = document.getElementById("leftBtn");
             const rightBtn = document.getElementById("rightBtn");
-            const logoScreen = document.getElementById("logo-screen");
             const chapterScreen = document.getElementById("chapter-screen");
             const controls = document.getElementById("controls");
             const continueBtn = document.getElementById("continue-btn");
 
             let stickmanPos = 50;
-            let backgroundPos = 0;
             const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
             const moveSpeed = 10;
-            const maxBackgroundMove = -window.innerWidth;
             const triggerPosMin = 640;
             const triggerPosMax = 720;
 
             let moveInterval;
 
-            // Function to move the character and the background
+            // Function to move the character
             function moveCharacter(direction) {
                 if (direction === "right") {
-                    if (stickmanPos < 750) { // Move stickman first until reaching 700px
+                    if (stickmanPos < screenWidth - 50) { // Keep character within the screen width
                         stickmanPos += moveSpeed;
                         stickman.style.left = `${stickmanPos}px`;
-                    } else if (backgroundPos > maxBackgroundMove) { // Scroll background when stickman reaches 700px
-                        backgroundPos -= moveSpeed;
-                        gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
                     }
                 } else if (direction === "left") {
-                    if (backgroundPos < 0) {
-                        backgroundPos += moveSpeed;
-                        gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
-                    } else if (stickmanPos > 50) {
+                    if (stickmanPos > 50) { // Keep character within the screen width
                         stickmanPos -= moveSpeed;
                         stickman.style.left = `${stickmanPos}px`;
                     }
@@ -241,30 +206,25 @@
 
             // Fade Transition Logic for the Screens
             setTimeout(() => {
-                // Fade out the logo screen after 2 seconds
-                logoScreen.style.opacity = '0';
+                // Fade in the chapter screen after 2 seconds (total 2 seconds)
+                chapterScreen.style.opacity = '1';
             }, 2000);
 
             setTimeout(() => {
-                // Fade in the chapter screen after 2 seconds (total 4 seconds)
-                chapterScreen.style.opacity = '1';
+                // Fade out the chapter screen after 2 more seconds (total 4 seconds)
+                chapterScreen.style.opacity = '0';
             }, 4000);
 
             setTimeout(() => {
-                // Fade out the chapter screen after 2 more seconds (total 6 seconds)
-                chapterScreen.style.opacity = '0';
+                // Finally, fade in the game screen after 2 more seconds (total 6 seconds)
+                document.getElementById("game").style.opacity = '1';
             }, 6000);
-
-            setTimeout(() => {
-                // Finally, fade in the game screen after 2 more seconds (total 8 seconds)
-                gameContainer.style.opacity = '1';
-            }, 8000);
 
             // Fade in the control buttons (left and right arrows) after the game screen appears
             setTimeout(() => {
                 controls.style.opacity = '1';
                 controls.style.visibility = 'visible'; // Make sure the buttons are visible
-            }, 8000); // The control buttons will fade in after 8 seconds (same time as the game scene)
+            }, 6000); // The control buttons will fade in after 6 seconds (same time as the game scene)
         });
     </script>
 </body>
