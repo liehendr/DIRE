@@ -70,69 +70,205 @@ const scenarios = {
             {
                 'name': 'Hotel Room',
                 'video': '77-2l6OOa4c',
-                'options': [],
+                'type': 'options',
+                'message': `The shaking intensifies!<br>What should you do?`,
+                'options': [
+                    {
+                        'message': 'Drop, Cover, and Hold under a sturdy table',
+                        'onClick': 'selectCase(1)',
+                    },
+                    {
+                        'message': 'Stay in the bed and hide under the blanket',
+                        'onClick': 'selectCase(2)',
+                    },
+                ],
             },
             {
                 'name': 'Hotel Room Success',
                 'video': 'sAKpqJpmhOo',
-                'options': [],
+                'type': 'correct',
+                'message': `Stay Safe! You’ve Got This!`,
+                'options': [
+                    {
+                        'message': 'CONTINUE',
+                        'onClick': "continue('sq02')",
+                    }
+                ],
             },
             {
                 'name': 'Hotel Room Failed',
                 'video': 'wwV5lInpou4',
-                'options': [],
+                'type': 'incorrect',
+                'message': `Almost there! One more round?`,
+                'options': [
+                    {
+                        'message': 'GIVE UP',
+                        'onClick': "giveUp()",
+                    },
+                    {
+                        'message': 'PLAY AGAIN',
+                        'onClick': "selectScenario('Hotel')",
+                    },
+                ],
             },
         ],
         'sq02': [
             {
                 'name': 'Leave Hotel Room',
                 'video': 'lqCGpeRc90c',
-                'options': [],
+                'type': 'options',
+                'message': `The earthquake ends, but the danger isn't over yet<br>What should you do next?`,
+                'options': [
+                    {
+                        'message': 'Stay in the hotel room and wait for further instructions',
+                        'onClick': 'selectCase(2)',
+                    },
+                    {
+                        'message': 'Evacuate the hotel to the assembly point',
+                        'onClick': 'selectCase(1)',
+                    },
+                ],
             },
             {
                 'name': 'Leave Hotel Room Success',
                 'video': '7zIfgVKuoQU',
-                'options': [],
+                'type': 'correct',
+                'message': `Stay Safe! You’ve Got This!`,
+                'options': [
+                    {
+                        'message': 'CONTINUE',
+                        'onClick': "continue('sq03')",
+                    }
+                ],
             },
             {
                 'name': 'Leave Hotel Room Failed',
                 'video': 'iS9bdnjBJ94',
-                'options': [],
+                'type': 'incorrect',
+                'message': `Almost there! One more round?`,
+                'options': [
+                    {
+                        'message': 'GIVE UP',
+                        'onClick': "giveUp()",
+                    },
+                    {
+                        'message': 'PLAY AGAIN',
+                        'onClick': "selectScenario('Hotel')",
+                    },
+                ],
             },
         ],
         'sq03': [
             {
                 'name': 'Leave Building',
                 'video': '4MfNt5JWIpo',
-                'options': [],
+                'type': 'options',
+                'message': `You rush out of the hotel room and needs to get<br>to the lobby. How should you go down?`,
+                'options': [
+                    {
+                        'message': 'Take the elevator to reach the ground floor quickly',
+                        'onClick': 'selectCase(2)',
+                    },
+                    {
+                        'message': 'Step down carefully using the stairs',
+                        'onClick': 'selectCase(1)',
+                    },
+                ],
             },
             {
                 'name': 'Leave Building Success',
                 'video': '-uTX3ehPnM8',
-                'options': [],
+                'type': 'correct',
+                'message': `Stay Safe! You’ve Got This!`,
+                'options': [
+                    {
+                        'message': 'CONTINUE',
+                        'onClick': "continue('sq04')",
+                    }
+                ],
             },
             {
                 'name': 'Leave Building Failed',
                 'video': 'xwMFmI2Fz7M',
-                'options': [],
+                'type': 'incorrect',
+                'message': `Almost there! One more round?`,
+                'options': [
+                    {
+                        'message': 'GIVE UP',
+                        'onClick': "giveUp()",
+                    },
+                    {
+                        'message': 'PLAY AGAIN',
+                        'onClick': "selectScenario('Hotel')",
+                    },
+                ],
             },
         ],
         'sq04': [
             {
                 'name': 'Respond To Tsunami Warning',
                 'video': 'cDdUQlOX0LQ',
-                'options': [],
+                'type': 'options',
+                'message': `Tsunami sirens blare as you reach the hotel lobby. Staff urge evacuation but give few details.<br>What is your next move?`,
+                'options': [
+                    {
+                        'message': 'Follow evacuation signs to higher ground',
+                        'onClick': 'selectCase(1)',
+                    },
+                    {
+                        'message': 'Panic and cry at the assembly point',
+                        'onClick': 'selectCase(2)',
+                    },
+                ],
             },
             {
                 'name': 'Respond To Tsunami Warning Success',
                 'video': 'Kp96FejF5tc',
-                'options': [],
+                'type': 'correct',
+                'message': `You did it!`,
+                'options': [
+                    {
+                        'message': 'CONTINUE',
+                        'onClick': "selectScenario('Other')",
+                    }
+                ],
             },
             {
                 'name': 'Respond To Tsunami Warning Failed',
                 'video': 'KFPdSDIfG6s',
-                'options': [],
+                'type': 'incorrect',
+                'message': `Almost there! One more round?`,
+                'options': [
+                    {
+                        'message': 'GIVE UP',
+                        'onClick': "giveUp()",
+                    },
+                    {
+                        'message': 'PLAY AGAIN',
+                        'onClick': "selectScenario('Hotel')",
+                    },
+                ],
             },
+        ],
+    },
+    'Other': {
+        'sq01': [
+            {
+                'name': 'Hello',
+                'video': 'hello',
+                'type': 'options',
+                'message': `The earthquake is strong!<br>What should you do?`,
+                'options': [
+                    {
+                        'message': 'Run away from the beach immediately',
+                        'onClick': 'selectCase(1)',
+                    },
+                    {
+                        'message': 'Drop, Cover, and Hold on a sturdy structure',
+                        'onClick': 'selectCase(2)',
+                    },
+                ],
+            }
         ],
     }
 }
