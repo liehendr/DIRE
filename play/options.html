@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-sansnarrow bg-gray-100">
+    
+    <!-- Navigation Bar (Fixed at the top) -->
+    <nav class="fixed top-0 left-0 w-full bg-white z-50 flex justify-between items-center border border-gray-300 px-4 py-2">
+        <!-- Left: DIRE Logo -->
+        <div>
+            <img class="h-10" src="/assets/logo.png" alt="DIRE Logo">
+        </div>
+
+        <!-- Right: Hamburger Menu -->
+        <div>
+            <img src="/assets/menu-icon.png" alt="Menu Icon" class="w-6 h-6 cursor-pointer" onclick="window.location.href='menu.html'">
+        </div>
+    </nav>
+    
+    <!-- Options Content -->
+    <!-- CHAPTER 1 -->
+    <!-- Sequence 1 -->
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+            <p class="text-white text-lg font-bold mb-4">The shaking intensifies!<br>What should you do?</p>
+            <!-- Correct -->
+            <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                Drop, Cover, and Hold under a sturdy table
+            </button>
+            <!-- Incorrect -->
+            <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                Stay in the bed and hide under the blanket
+            </button>
+        </div>
+    </div>
+
+        <!-- Sequence 2 -->
+        <div class="flex justify-center items-center min-h-screen">
+            <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+                <p class="text-white text-lg font-bold mb-4">The earthquake ends, but the danger isn't over yet<br>What should you do next?</p>
+                <!-- Incorrect -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Stay in the hotel room and wait for further instructions
+                </button>
+                <!-- Correct -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Evacuate the hotel to the assembly point
+                </button>
+            </div>
+        </div>
+
+        <!-- Sequence 3 -->
+        <div class="flex justify-center items-center min-h-screen">
+            <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+                <p class="text-white text-lg font-bold mb-4">You rush out of the hotel room and needs to get<br>to the lobby. How should you go down?</p>
+                <!-- Incorrect -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Take the elevator to reach the ground floor quickly
+                </button>
+                <!-- Correct -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Step down carefully using the stairs
+                </button>
+            </div>
+        </div>
+
+        <!-- Sequence 4 -->
+        <div class="flex justify-center items-center min-h-screen">
+            <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+                <p class="text-white text-lg font-bold mb-4">Tsunami sirens blare as you reach the hotel lobby. Staff urge evacuation but give few details.<br>What is your next move?</p>
+                <!-- Correct -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Follow evacuation signs to higher ground
+                </button>
+                <!-- Incorrect -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Panic and cry at the assembly point
+                </button>
+            </div>
+        </div>
+
+    <!-- CHAPTER 2 -->
+    <!-- Sequence 1 -->
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+            <p class="text-white text-lg font-bold mb-4">The earthquake is strong!<br>What should you do?</p>
+            <!-- Incorrect -->
+            <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                Run away from the beach immediately
+            </button>
+            <!-- Correct -->
+            <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                Drop, Cover, and Hold on a sturdy structure
+            </button>
+        </div>
+    </div>
+
+        <!-- Sequence 2 -->
+        <div class="flex justify-center items-center min-h-screen">
+            <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+                <p class="text-white text-lg font-bold mb-4">You notice the ocean water rapidly receding and<br>hear a strange roaring sound. What should you do?</p>
+                <!-- Correct -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Follow the evacuation route and run away from the beach
+                </button>
+                <!-- Incorrect -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Record the strange ocean phenomenon
+                </button>
+            </div>
+        </div>
+
+        <!-- Sequence 3 -->
+        <div class="flex justify-center items-center min-h-screen">
+            <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+                <p class="text-white text-lg font-bold mb-4">The tsunami siren blares!<br>Which escape route do you take?</p>
+                <!-- Incorrect -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Go to the second floor of the nearby department store
+                </button>
+                <!-- Correct -->
+                <button class="w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500">
+                    Continue following evacuation signs to higher ground
+                </button>
+            </div>
+        </div>
+</body>
+</html>
