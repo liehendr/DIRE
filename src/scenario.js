@@ -358,6 +358,10 @@ function getSaves() {
     return JSON.parse(data);
 }
 
+function nukeSaves() {
+    sessionStorage.removeItem('saves');
+}
+
 function scenarioSavesInit() {
     let saves;
     if (!getSaves()) {
@@ -479,11 +483,17 @@ function giveUp() {
     location.replace(playHome)
 }
 
-function replay() {
-    // reload saves
+function replayScenario() {
+    // reloScenarioad saves
     current = populateState(searchParams.get('scenario'),defaultScenarioProgress)
     saveState()
     location.reload()
+}
+
+function replay() {
+    // reset saves
+    nukeSaves();
+    location.replace(playScenario);
 }
 
 // Depending on options, will set value to current and then
