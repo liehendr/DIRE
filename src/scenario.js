@@ -14,6 +14,101 @@ class Option {
     }
 }
 
+function generateButton(type, option, index = 0) {
+    let opt_type = type;
+    let opt_msg = option.message;
+    let opt_act = option.onClick;
+    console.log('Get the following options:')
+    console.log('  --> type   :',opt_type)
+    console.log('  --> message:', opt_msg)
+    console.log('  --> onClick:', opt_act)
+    console.log('  --> index  :', index)
+
+    let class_dict = {
+        'options': ["w-full py-3 px-3 my-2 bg-yellow-400 border-2 border-black text-black font-semibold rounded hover:bg-yellow-500"],
+        'correct': ["w-full py-3 px-2 my-2 bg-yellow-500 border-2 border-black text-black font-semibold lg:text-lg rounded hover:bg-yellow-400 transition duration-200"],
+        'incorrect': [
+            "w-full py-2 px-2 my-2 bg-white border-2 border-black text-black font-semibold lg:text-lg rounded hover:bg-gray-200 transition duration-200",
+            "w-full py-2 px-2 my-2 bg-yellow-500 border-2 border-black text-black font-semibold lg:text-lg rounded hover:bg-yellow-400 transition duration-200",
+        ]
+    }
+
+    let classes = class_dict[opt_type][index];
+
+    return `<button class="${classes}" onclick="${opt_act}">${opt_msg}</button>`;
+}
+
+function generateDialog(sequence) {
+    let message = sequence.message
+    let opt_type = sequence.type
+    let options = sequence.options
+    console.log('Get sequence  :', sequence.name)
+    console.log(' --> message  :', message)
+    console.log(' --> opt_type :', opt_type)
+    let body = '';
+
+    let buttons = [];
+
+    for (let [key, value] of Object.entries(options)) {
+        if (opt_type === 'incorrect') {
+            index = key;
+        } else {
+            index = 0;
+        }
+        console.log('  inside loop of key:', key,'and value:',value)
+        console.log('  -->type :', opt_type)
+        console.log('  -->value:', value)
+        console.log('  -->index:',index)
+        buttons.push(generateButton(opt_type, value, index))
+    }
+
+    switch (opt_type) {
+        case 'correct':
+            body = `
+    <!-- Game Over Section -->
+    <div class="flex flex-col items-center justify-center w-screen h-screen lg:mt-16">
+        <!-- Game Over Image -->
+        <img src="/assets/great-job.png" alt="Great Job" class="w-auto lg:mt-20 mb-4">
+
+        <!-- Small Text -->
+        <p class="text-black text-sm lg:text-lg mb-8 lg:mb-16">${message}</p>
+
+        <!-- Buttons -->
+        <div class="justif-center w-2/5 lg:w-1/4">
+            <!-- CONTINUE Button -->
+            ${buttons.join(' ')}
+        </div>
+    </div>`;
+            break;
+        case 'incorrect':
+            body = `
+    <div class="flex flex-col items-center justify-center w-screen h-screen lg:mt-16">
+        <!-- Game Over Image -->
+        <img src="/assets/game-over.png" alt="Game Over" class="w-auto lg:mt-10 mb-4">
+
+        <!-- Small Text -->
+        <p class="text-black text-sm lg:text-lg mb-8 lg:mb-16">${message}</p>
+
+        <!-- Buttons -->
+        <div class="flex space-x-6 w-full max-w-sm lg:max-w-lg">
+            ${buttons.join(' ')}
+        </div>
+    </div>`;
+            break;
+        default: // type options
+            body = `
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-2/3 max-w-lg p-6 bg-red-500 border-4 border-black rounded-md text-center">
+            <p class="text-white text-lg font-bold mb-4">${message}</p>
+            ${buttons.join(' ')}
+        </div>
+    </div>`;
+            break;
+    }
+
+    return body;
+}
+
 // Reads from a json file
 function readScenarioFile(file) {
     console.log(file)
@@ -91,7 +186,7 @@ const scenarios = {
                 'options': [
                     {
                         'message': 'CONTINUE',
-                        'onClick': "continue('sq02')",
+                        'onClick': "selectCase(3)",
                     }
                 ],
             },
@@ -107,7 +202,7 @@ const scenarios = {
                     },
                     {
                         'message': 'PLAY AGAIN',
-                        'onClick': "selectScenario('Hotel')",
+                        'onClick': "replay()",
                     },
                 ],
             },
@@ -137,7 +232,7 @@ const scenarios = {
                 'options': [
                     {
                         'message': 'CONTINUE',
-                        'onClick': "continue('sq03')",
+                        'onClick': "selectCase(3)",
                     }
                 ],
             },
@@ -153,7 +248,7 @@ const scenarios = {
                     },
                     {
                         'message': 'PLAY AGAIN',
-                        'onClick': "selectScenario('Hotel')",
+                        'onClick': "replay()",
                     },
                 ],
             },
@@ -183,7 +278,7 @@ const scenarios = {
                 'options': [
                     {
                         'message': 'CONTINUE',
-                        'onClick': "continue('sq04')",
+                        'onClick': "selectCase(3)",
                     }
                 ],
             },
@@ -199,7 +294,7 @@ const scenarios = {
                     },
                     {
                         'message': 'PLAY AGAIN',
-                        'onClick': "selectScenario('Hotel')",
+                        'onClick': "replay()",
                     },
                 ],
             },
@@ -229,7 +324,7 @@ const scenarios = {
                 'options': [
                     {
                         'message': 'CONTINUE',
-                        'onClick': "selectScenario('Other')",
+                        'onClick': "nextScenario()",
                     }
                 ],
             },
@@ -277,7 +372,7 @@ const scenarios = {
                 'options': [
                     {
                         'message': 'CONTINUE',
-                        'onClick': "selectScenario('Other')",
+                        'onClick': "selectCase(3)",
                     }
                 ],
             },
@@ -293,7 +388,7 @@ const scenarios = {
                     },
                     {
                         'message': 'PLAY AGAIN',
-                        'onClick': "selectScenario('Hotel')",
+                        'onClick': "replay()",
                     },
                 ],
             },
@@ -394,7 +489,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-let player, current, progress, playSequence, playIndex;
+let player, current, progress, playSequence, playIndex, currentVideo;
 
 let playHome = '/play'
 let playScenario = playHome + '/sc01.html'
@@ -511,7 +606,7 @@ function onYouTubeIframeAPIReady() {
     current = populateState(searchParams.get('scenario'),scenarioSavesInit());
     console.log('curent',current)
 
-    let currentVideo = videoSetter()
+    currentVideo = videoSetter()
 
     console.log('currentVideo',currentVideo)
     selectVideo(currentVideo.sequence,currentVideo.index)
@@ -545,7 +640,7 @@ function onPlayerReady(event) {
 let videoIsFinished = false;
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED && !videoIsFinished) {
-        launchMenu();
+        launchMenu(scenarios);
         videoIsFinished = true;
     }
 }
@@ -554,7 +649,8 @@ function stopVideo() {
     player.stopVideo();
 }
 
-function launchMenu() {
-    injectHTML('menu',`<div>Menu is run</div>`);
+function launchMenu(obj) {
+    let sequence = obj[current.name][playSequence][playIndex]
+    injectHTML('menu',generateDialog(sequence));
 }
 
