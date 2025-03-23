@@ -273,7 +273,7 @@ const scenarios = {
     }
 }
 
-const sequenceStatus = [ 'default', 'correct', 'incorrect' ]
+const sequenceStatus = [ 'default', 'correct', 'incorrect', 'passed' ]
 
 const defaultScenarioProgress = {
     'Hotel': {
@@ -369,24 +369,57 @@ function selectVideo(sequence = 'sq01', sqIndex = 0) {
     playSequence = sequence;
     playIndex = sqIndex
 }
+
 function videoSetter() {
     for (let [key, value] of Object.entries(current.data)) {
         console.log('key:',key, 'value:', value)
+        let result = { 'sequence': key, 'index' : null };
+        if (value === sequenceStatus[3]) {
+            continue;
+        }
         switch (value) {
             case sequenceStatus[1]:
-                console.log(value, 'therefore skip');
-                return { 'sequence': key, 'index': 1 }
+                console.log(value, 'therefore play great job');
+                result.index = 1
+                return result
                 break;
             case sequenceStatus[2]:
-                console.log(value, 'therefore reset sequence');
-                return { 'sequence': key, 'index': 2 }
+                console.log(value, 'therefore play game over');
+                result.index = 2
+                return result
+                break;
+            case sequenceStatus[3]:
+                console.log(value, 'therefore skip')
+                result.index = 3
+                return result
                 break;
             default:
                 console.log(value, 'therefore display videos');
-                return { 'sequence': key, 'index': 0 }
-
+                result.index = 0
+                return result
         }
     }
+}
+
+// Will save current to sessionStorage
+function saveState() {
+    // First load from current
+    let name = current.name
+    let data = current.data
+    // Then save to sessionStorage
+    progress[name].data = data
+    setSaves(progress);
+
+    return getSaves();
+}
+
+// Depending on options, will set value to current and then
+// save current to sessionStorage, then reload page
+function selectCase(option) {
+    // first set data of currentVideo
+    current.data[playSequence] = sequenceStatus[option];
+    let status = saveState();
+    location.reload();
 }
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
