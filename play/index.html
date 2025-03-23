@@ -14,9 +14,9 @@
 
         /* Game Scene (Scrollable Background) */
         #game {
-            width: 200vw;
+            width: 100vw;
             height: 100vh;
-            background: url('/assets/play-background.png') no-repeat;
+            background: url('/assets/play-bg-1.png') no-repeat;
             background-size: cover;
             background-position: 0 0;
             position: relative;
@@ -120,14 +120,14 @@
     <div id="chapter-screen" class="fade-image" style="background-image: url('/assets/chapter-1.png');"></div>
 
     <!-- Navigation Bar (Fixed at the top) -->
-    <nav>
+    <nav class="fixed top-0 left-0 w-full bg-white flex shadow-md z-50">
         <!-- Left: DIRE Logo -->
-        <div class="flex-none mr-auto py-2 px-4">
+        <div class="flex-none mr-auto">
             <img class="h-10" src="/assets/logo.png" alt="DIRE Logo">
         </div>
 
-        <!-- Right: Hamburger Menu (Smaller and Centered) -->
-        <div class="flex-none py-2 px-4 flex items-center justify-center">
+        <!-- Right: Hamburger Menu -->
+        <div class="flex-none">
             <img src="/assets/menu-icon.png" alt="Menu Icon" class="w-6 h-6 cursor-pointer" onclick="window.location.href='menu.html'">
         </div>
     </nav>
@@ -160,37 +160,28 @@
             const continueBtn = document.getElementById("continue-btn");
 
             let stickmanPos = 50;
-            let backgroundPos = 0;
             const screenWidth = window.innerWidth;
             const moveSpeed = 10;
-            const maxBackgroundMove = -window.innerWidth;
-            const triggerPosMin = 640;
-            const triggerPosMax = 720;
+            const maxStickmanPos = screenWidth - 50 - 50; // 50px from the left and 50px from the right
 
             let moveInterval;
 
             // Function to move the character and the background
             function moveCharacter(direction) {
                 if (direction === "right") {
-                    if (stickmanPos < 750) { // Move stickman first until reaching 700px
+                    if (stickmanPos < maxStickmanPos) { // Restrict the stickman to not go past 50px from the right
                         stickmanPos += moveSpeed;
                         stickman.style.left = `${stickmanPos}px`;
-                    } else if (backgroundPos > maxBackgroundMove) { // Scroll background when stickman reaches 700px
-                        backgroundPos -= moveSpeed;
-                        gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
                     }
                 } else if (direction === "left") {
-                    if (backgroundPos < 0) {
-                        backgroundPos += moveSpeed;
-                        gameContainer.style.backgroundPositionX = `${backgroundPos}px`;
-                    } else if (stickmanPos > 50) {
+                    if (stickmanPos > 50) { // Restrict the stickman to not go past 50px from the left
                         stickmanPos -= moveSpeed;
                         stickman.style.left = `${stickmanPos}px`;
                     }
                 }
 
                 // Show Continue button when the stickman is between 500px and 550px
-                if (stickmanPos >= triggerPosMin && stickmanPos <= triggerPosMax) {
+                if (stickmanPos >= 500 && stickmanPos <= 550) {
                     continueBtn.style.display = 'block';  // Show the continue button
                     continueBtn.style.opacity = '1';      // Fade in
                 } else {
