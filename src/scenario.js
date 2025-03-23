@@ -492,7 +492,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 let player, current, progress, playSequence, playIndex, currentVideo;
 
 let playHome = '/play'
-let playScenario = playHome + '/sc01.html'
+let playScenario = playHome + '/simulation/'
 
 
 function selectVideo(sequence = 'sq01', sqIndex = 0) {
