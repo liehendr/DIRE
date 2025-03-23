@@ -251,11 +251,11 @@ const scenarios = {
             },
         ],
     },
-    'Other': {
+    'Beach': {
         'sq01': [
             {
                 'name': 'Hello',
-                'video': 'hello',
+                'video': 'tItvBAbP2B0',
                 'type': 'options',
                 'message': `The earthquake is strong!<br>What should you do?`,
                 'options': [
@@ -268,7 +268,35 @@ const scenarios = {
                         'onClick': 'selectCase(2)',
                     },
                 ],
-            }
+            },
+            {
+                'name': 'Respond To Tsunami Warning Success',
+                'video': 'vPJUQuFJdWA',
+                'type': 'correct',
+                'message': `You did it!`,
+                'options': [
+                    {
+                        'message': 'CONTINUE',
+                        'onClick': "selectScenario('Other')",
+                    }
+                ],
+            },
+            {
+                'name': 'Respond To Tsunami Warning Failed',
+                'video': 'nJjALrgF15E',
+                'type': 'incorrect',
+                'message': `Almost there! One more round?`,
+                'options': [
+                    {
+                        'message': 'GIVE UP',
+                        'onClick': "giveUp()",
+                    },
+                    {
+                        'message': 'PLAY AGAIN',
+                        'onClick': "selectScenario('Hotel')",
+                    },
+                ],
+            },
         ],
     }
 }
@@ -364,6 +392,9 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 let player, current, progress, playSequence, playIndex;
 
+let playHome = '/play'
+let playScenario = playHome + '/sc01.html'
+
 
 function selectVideo(sequence = 'sq01', sqIndex = 0) {
     playSequence = sequence;
@@ -371,13 +402,28 @@ function selectVideo(sequence = 'sq01', sqIndex = 0) {
 }
 
 function videoSetter() {
-    for (let [key, value] of Object.entries(current.data)) {
+    let keys = Object.keys(current.data);
+    let lastKey = keys[keys.length-1];
+    let entries = Object.entries(current.data);
+    console.log('Last key', lastKey)
+
+    for (let [key, value] of entries) {
         console.log('key:',key, 'value:', value)
         let result = { 'sequence': key, 'index' : null };
         if (value === sequenceStatus[3]) {
             continue;
         }
+
+        if (key === lastKey) {
+            console.log('Warning, last element detected!')
+        }
+
         switch (value) {
+            case sequenceStatus[0]:
+                console.log(value, 'therefore play options');
+                result.index = 0
+                return result
+                break;
             case sequenceStatus[1]:
                 console.log(value, 'therefore play great job');
                 result.index = 1
@@ -388,17 +434,13 @@ function videoSetter() {
                 result.index = 2
                 return result
                 break;
-            case sequenceStatus[3]:
-                console.log(value, 'therefore skip')
-                result.index = 3
-                return result
-                break;
             default:
-                console.log(value, 'therefore display videos');
-                result.index = 0
-                return result
+                console.log(value, 'Unknown state!');
         }
     }
+
+    console.log('This is the end, redirecting to the next scenario');
+    nextScenario();
 }
 
 // Will save current to sessionStorage
@@ -411,6 +453,37 @@ function saveState() {
     setSaves(progress);
 
     return getSaves();
+}
+
+function nextScenario() {
+    let keys = Object.keys(scenarios)
+    let index = keys.indexOf(current.name)
+    let nextKey = index + 1
+    let nextKeyName = keys[nextKey]
+    selectCase(3)
+    saveState()
+    // return location.replace('/play/sc01.html?scenario='+nextKeyName);
+
+    if ( index < keys.length ) {
+        location.replace(playScenario + '?scenario='+nextKeyName);
+    } else {
+        location.replace(playHome)
+    }
+}
+
+function selectScenario(scenario) {
+    location.replace(playScenario + '?scenario='+scenario);
+}
+
+function giveUp() {
+    location.replace(playHome)
+}
+
+function replay() {
+    // reload saves
+    current = populateState(searchParams.get('scenario'),defaultScenarioProgress)
+    saveState()
+    location.reload()
 }
 
 // Depending on options, will set value to current and then
