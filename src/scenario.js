@@ -493,7 +493,7 @@ function replayScenario() {
 function replay() {
     // reset saves
     nukeSaves();
-    location.replace(playScenario);
+    location.replace(playScenario + '?scenario=' + Object.keys(scenarios)[0]);
 }
 
 // Depending on options, will set value to current and then
