@@ -86,51 +86,51 @@ const scenarios = {
         'sq02': [
             {
                 'name': 'Leave Hotel Room',
-                'video': '77-2l6OOa4c',
+                'video': 'lqCGpeRc90c',
                 'options': [],
             },
             {
                 'name': 'Leave Hotel Room Success',
-                'video': 'sAKpqJpmhOo',
+                'video': '7zIfgVKuoQU',
                 'options': [],
             },
             {
                 'name': 'Leave Hotel Room Failed',
-                'video': 'wwV5lInpou4',
+                'video': 'iS9bdnjBJ94',
                 'options': [],
             },
         ],
         'sq03': [
             {
                 'name': 'Leave Building',
-                'video': '77-2l6OOa4c',
+                'video': '4MfNt5JWIpo',
                 'options': [],
             },
             {
                 'name': 'Leave Building Success',
-                'video': 'sAKpqJpmhOo',
+                'video': '-uTX3ehPnM8',
                 'options': [],
             },
             {
                 'name': 'Leave Building Failed',
-                'video': 'wwV5lInpou4',
+                'video': 'xwMFmI2Fz7M',
                 'options': [],
             },
         ],
         'sq04': [
             {
                 'name': 'Respond To Tsunami Warning',
-                'video': '77-2l6OOa4c',
+                'video': 'cDdUQlOX0LQ',
                 'options': [],
             },
             {
                 'name': 'Respond To Tsunami Warning Success',
-                'video': 'sAKpqJpmhOo',
+                'video': 'Kp96FejF5tc',
                 'options': [],
             },
             {
                 'name': 'Respond To Tsunami Warning Failed',
-                'video': 'wwV5lInpou4',
+                'video': 'KFPdSDIfG6s',
                 'options': [],
             },
         ],
@@ -226,14 +226,29 @@ tag.src = "https://www.youtube.com/iframe_api";
 let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+let player, current, progress, playSequence, playIndex;
+
+
+function selectVideo(sequence = 'sq01', sqIndex = 0) {
+    playSequence = sequence;
+    playIndex = sqIndex
+}
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
-let player;
-function onYouTubeIframeAPIReady(scenario = 'sq01', scIndex = 0) {
+function onYouTubeIframeAPIReady() {
+    progress = scenarioSavesInit();
+    current = populateState(searchParams.get('scenario'),scenarioSavesInit());
+    console.log('curent',current)
+
+    selectVideo('sq03',0)
+
+    console.log('playSequence',playSequence)
+    console.log('playIndex',playIndex)
+
     player = new YT.Player('player', {
         height: '390',
         width: '640',
-        videoId: scenarios[current.name][scenario][scIndex].video,
+        videoId: scenarios[current.name][playSequence][playIndex].video,
         playerVars: {
             'playsinline': 1
         },
@@ -243,6 +258,7 @@ function onYouTubeIframeAPIReady(scenario = 'sq01', scIndex = 0) {
         }
     });
 }
+
 
 // The API will call this function when the video player is ready.
 function onPlayerReady(event) {
@@ -268,10 +284,3 @@ function launchMenu() {
     injectHTML('menu',`<div>Menu is run</div>`);
 }
 
-
-/**
- * Invocations
- */
-
-let progress = scenarioSavesInit();
-let current = populateState(searchParams.get('scenario'),scenarioSavesInit());
