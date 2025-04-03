@@ -16,7 +16,7 @@
     <nav class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md z-50">
         <!-- Left: DIRE Logo -->
         <div class="flex-none mr-auto py-2 px-4">
-            <img class="h-10" src="/assets/logo.png" alt="DIRE Logo">
+            <img class="h-9" src="/assets/logo.png" alt="DIRE Logo">
         </div>
 
         <!-- Right: Sections Button -->
@@ -48,10 +48,17 @@
     <section id="home" class="w-full h-90 flex flex-col justify-center items-center text-center relative">
         
         <!-- Background Image -->
-        <div class="absolute w-auto h-auto lg:h-full lg:mt-10">
-            <img src="/assets/homepage-1.png" alt="Homepage Cover">
+        <div class="absolute inset-0 w-auto h-auto lg:h-full lg:mt-10 relative">
+            <img src="/assets/home-cover.png" alt="Homepage Cover">
         </div>
-        
+
+        <div class="absolute bottom-10 lg:top-240 lg:left-55 flex justify-center items-center z-10">
+                <a href="/play/">
+                    <button class="w-[calc(2.5*4rem)] lg:w-[calc(2.5*6rem)] h-[calc(1*2.5rem)] lg:h-[calc(1*4rem)] uppercase text-[24px] lg:text-[48px] text-white font-bold bg-[#DA291C] border-2 border-black rounded-lg flex justify-center items-center">
+                    Play!
+                    </button>
+                </a>
+            </div>
 
         <!-- Description -->
         <!-- <div class="w-full flex justify-center items-center relative">
@@ -66,7 +73,7 @@
 
 
     <!-- Resources Section -->
-    <section id="resources" class="container mr-auto lg:mx-auto max-w-5xl px-8 lg:pt-80 block">
+    <section id="resources" class="container mr-auto lg:mx-auto max-w-5xl px-8 lg:pt-240 block">
 
         <!-- Title -->
         <div class="lg:w-auto text-center lg:text-left">
@@ -208,30 +215,30 @@
 
 
     <!-- Play Section -->
-    <section id="play" class="mx-auto container pt-10">
+    <!-- <section id="play" class="mx-auto container pt-10"> -->
         <!-- Title -->
-        <div>
+        <!-- <div>
             <h1 class="text-[70px] lg:text-[125px] text-center font-bold text-red-600">
                 Are You Ready?
             </h1>
-        </div>
+        </div> -->
 
         <!--Box Rectangle-->
-        <div class="bg-white relative pb-6 lg:pb-15 m-4 sm:m-8 lg:m-19 shadow-gray-500 shadow-md flex flex-col items-center">
+        <!-- <div class="bg-white relative pb-6 lg:pb-15 m-4 sm:m-8 lg:m-19 shadow-gray-500 shadow-md flex flex-col items-center"> -->
             <!-- Cover -->
-            <div class="mt-2 py-12">
+            <!-- <div class="mt-2 py-12">
                 <img src="/assets/play-cover.png" alt="Play Cover" class="object-contain">
-            </div>
+            </div> -->
 
             <!-- Button -->
-            <div class="mt-1 lg:mt-2">
+            <!-- <div class="mt-1 lg:mt-2">
                 <a href="/play/">
                     <button class="w-[calc(3*4rem)] lg:w-[calc(3*8rem)] h-[calc(1*3rem)] lg:h-[calc(1*5rem)] uppercase text-[32px] lg:text-[64px] text-black font-bold bg-yellow-500 border-2 border-black rounded-lg flex justify-center items-center">
                     Play!
                     </button>
                 </a>
             </div>
-        </div>
+        </div> -->
 
     </section>
 
