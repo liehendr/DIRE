@@ -104,6 +104,9 @@
 </head>
 
 <body>
+    
+    <div id="player"></div>
+
     <!-- Logo and Chapter Screens (Initially Visible) -->
     <div id="chapter-screen" class="fade-image" style="background-image: url('/assets/chapter-1.png');"></div>
 
@@ -138,94 +141,111 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const stickman = document.getElementById("stickman");
-            const leftBtn = document.getElementById("leftBtn");
-            const rightBtn = document.getElementById("rightBtn");
-            const chapterScreen = document.getElementById("chapter-screen");
-            const controls = document.getElementById("controls");
-            const continueBtn = document.getElementById("continue-btn");
+            document.addEventListener("DOMContentLoaded", function () {
+        const stickman = document.getElementById("stickman");
+        const leftBtn = document.getElementById("leftBtn");
+        const rightBtn = document.getElementById("rightBtn");
+        const chapterScreen = document.getElementById("chapter-screen");
+        const controls = document.getElementById("controls");
+        const continueBtn = document.getElementById("continue-btn");
 
-            let stickmanPos = 50;
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
-            const moveSpeed = 10;
-            const triggerPosMin = 640;
-            const triggerPosMax = 720;
+        let stickmanPos = 50;
+        let screenWidth = window.innerWidth;
+        const moveSpeed = 10;
+        
+        // Calculate trigger zone as percentage of screen width
+        let triggerPosMin = screenWidth * 0.45; // 45% of screen width
+        let triggerPosMax = screenWidth * 0.55; // 55% of screen width
 
-            let moveInterval;
+        let moveInterval;
 
-            // Function to move the character
-            function moveCharacter(direction) {
-                if (direction === "right") {
-                    if (stickmanPos < screenWidth - 50) { // Keep character within the screen width
-                        stickmanPos += moveSpeed;
-                        stickman.style.left = `${stickmanPos}px`;
-                    }
-                } else if (direction === "left") {
-                    if (stickmanPos > 50) { // Keep character within the screen width
-                        stickmanPos -= moveSpeed;
-                        stickman.style.left = `${stickmanPos}px`;
-                    }
+        // Recalculate dimensions when window is resized
+        window.addEventListener("resize", function() {
+            screenWidth = window.innerWidth;
+            triggerPosMin = screenWidth * 0.45;
+            triggerPosMax = screenWidth * 0.55;
+            
+            // Check if button should be visible after resize
+            checkButtonVisibility();
+        });
+
+        // Function to check if button should be visible
+        function checkButtonVisibility() {
+            if (stickmanPos >= triggerPosMin && stickmanPos <= triggerPosMax) {
+                continueBtn.style.display = 'block';
+                continueBtn.style.opacity = '1';
+            } else {
+                continueBtn.style.display = 'none';
+                continueBtn.style.opacity = '0';
+            }
+        }
+
+        // Function to move the character
+        function moveCharacter(direction) {
+            if (direction === "right") {
+                if (stickmanPos < screenWidth - 50) {
+                    stickmanPos += moveSpeed;
+                    stickman.style.left = `${stickmanPos}px`;
                 }
-
-                // Show Continue button when the stickman is between 500px and 550px
-                if (stickmanPos >= triggerPosMin && stickmanPos <= triggerPosMax) {
-                    continueBtn.style.display = 'block';  // Show the continue button
-                    continueBtn.style.opacity = '1';      // Fade in
-                } else {
-                    continueBtn.style.display = 'none';  // Hide the continue button
+            } else if (direction === "left") {
+                if (stickmanPos > 50) {
+                    stickmanPos -= moveSpeed;
+                    stickman.style.left = `${stickmanPos}px`;
                 }
             }
 
-            // Start moving on button press (Mouse Hold)
-            leftBtn.addEventListener("mousedown", () => {
-                moveInterval = setInterval(() => moveCharacter("left"), 50);
-            });
-            rightBtn.addEventListener("mousedown", () => {
-                moveInterval = setInterval(() => moveCharacter("right"), 50);
-            });
+            // Check if button should be visible
+            checkButtonVisibility();
+        }
 
-            // Stop moving on button release
-            leftBtn.addEventListener("mouseup", () => clearInterval(moveInterval));
-            rightBtn.addEventListener("mouseup", () => clearInterval(moveInterval));
-
-            // Stop moving on mouse leave
-            leftBtn.addEventListener("mouseleave", () => clearInterval(moveInterval));
-            rightBtn.addEventListener("mouseleave", () => clearInterval(moveInterval));
-
-            // Button Click Events (For single-click functionality)
-            rightBtn.addEventListener("click", () => moveCharacter("right"));
-            leftBtn.addEventListener("click", () => moveCharacter("left"));
-
-            // Keyboard Controls
-            document.addEventListener("keydown", (event) => {
-                if (event.key === "ArrowRight") moveCharacter("right");
-                if (event.key === "ArrowLeft") moveCharacter("left");
-            });
-
-            // Fade Transition Logic for the Screens
-            setTimeout(() => {
-                // Fade in the chapter screen after 2 seconds (total 2 seconds)
-                chapterScreen.style.opacity = '1';
-            }, 2000);
-
-            setTimeout(() => {
-                // Fade out the chapter screen after 2 more seconds (total 4 seconds)
-                chapterScreen.style.opacity = '0';
-            }, 4000);
-
-            setTimeout(() => {
-                // Finally, fade in the game screen after 2 more seconds (total 6 seconds)
-                document.getElementById("game").style.opacity = '1';
-            }, 6000);
-
-            // Fade in the control buttons (left and right arrows) after the game screen appears
-            setTimeout(() => {
-                controls.style.opacity = '1';
-                controls.style.visibility = 'visible'; // Make sure the buttons are visible
-            }, 6000); // The control buttons will fade in after 6 seconds (same time as the game scene)
+        // Start moving on button press (Mouse Hold)
+        leftBtn.addEventListener("mousedown", () => {
+            moveInterval = setInterval(() => moveCharacter("left"), 50);
         });
+        rightBtn.addEventListener("mousedown", () => {
+            moveInterval = setInterval(() => moveCharacter("right"), 50);
+        });
+
+        // Stop moving on button release
+        leftBtn.addEventListener("mouseup", () => clearInterval(moveInterval));
+        rightBtn.addEventListener("mouseup", () => clearInterval(moveInterval));
+
+        // Stop moving on mouse leave
+        leftBtn.addEventListener("mouseleave", () => clearInterval(moveInterval));
+        rightBtn.addEventListener("mouseleave", () => clearInterval(moveInterval));
+
+        // Button Click Events (For single-click functionality)
+        rightBtn.addEventListener("click", () => moveCharacter("right"));
+        leftBtn.addEventListener("click", () => moveCharacter("left"));
+
+        // Keyboard Controls
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowRight") moveCharacter("right");
+            if (event.key === "ArrowLeft") moveCharacter("left");
+        });
+
+        // Fade Transition Logic for the Screens
+        setTimeout(() => {
+            // Fade in the chapter screen after 2 seconds (total 2 seconds)
+            chapterScreen.style.opacity = '1';
+        }, 2000);
+
+        setTimeout(() => {
+            // Fade out the chapter screen after 2 more seconds (total 4 seconds)
+            chapterScreen.style.opacity = '0';
+        }, 4000);
+
+        setTimeout(() => {
+            // Finally, fade in the game screen after 2 more seconds (total 6 seconds)
+            document.getElementById("game").style.opacity = '1';
+        }, 6000);
+
+        // Fade in the control buttons after the game screen appears
+        setTimeout(() => {
+            controls.style.opacity = '1';
+            controls.style.visibility = 'visible';
+        }, 6000);
+    });
     </script>
 </body>
 </html>

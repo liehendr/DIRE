@@ -603,29 +603,45 @@ function selectCase(option) {
 // after the API code downloads.
 function onYouTubeIframeAPIReady() {
     progress = scenarioSavesInit();
-    current = populateState(searchParams.get('scenario'),scenarioSavesInit());
-    console.log('curent',current)
+    current = populateState(searchParams.get('scenario'), scenarioSavesInit());
+    console.log('curent', current)
 
     currentVideo = videoSetter()
 
-    console.log('currentVideo',currentVideo)
-    selectVideo(currentVideo.sequence,currentVideo.index)
+    console.log('currentVideo', currentVideo)
+    selectVideo(currentVideo.sequence, currentVideo.index)
 
-    console.log('playSequence',playSequence)
-    console.log('playIndex',playIndex)
+    console.log('playSequence', playSequence)
+    console.log('playIndex', playIndex)
 
     player = new YT.Player('player', {
-        height: '390',
-        width: '640',
         videoId: scenarios[current.name][playSequence][playIndex].video,
         playerVars: {
-            'playsinline': 1
+            autoplay: 1,
+            controls: 0,
+            modestbranding: 1,
+            showinfo: 0,
+            rel: 0,
+            iv_load_policy: 3,
+            playsinline: 1
         },
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         }
     });
+
+     // Ensure the player container takes full screen
+     let playerContainer = document.getElementById('player');
+     playerContainer.style.width = "100vw";
+     playerContainer.style.height = "100vh";
+     
+     // Adjust the iframe size if needed
+     let iframe = document.querySelector('#player iframe');
+     if (iframe) {
+         iframe.style.width = "100%";
+         iframe.style.height = "100%";
+     }
 }
 
 
