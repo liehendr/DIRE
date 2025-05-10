@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIRE - Disaster Ready</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'PT Sans Narrow', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        .section-container {
+            position: relative;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            
+        }
+
+        .section-container.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #DA291C;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+    .nav-active {
+        font-weight: bold;
+        text-decoration: underline;
+        color: #DA291C;
+    }
+    </style>
+</head>
+
+<body class="font-sansnarrow m-0 p-0">
+        
+    <!-- Navigation Bar (Fixed at the top) -->
+    <nav class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md">
+        <!-- Left: DIRE Logo -->
+        <div class="flex-none mr-auto py-2 px-4">
+            <img class="h-9" src="/assets/DIRE-LOGO.png" alt="DIRE Logo">
+        </div>
+
+        <!-- Right: Sections Button -->
+        <div class="flex space-x-3 text-sm">
+            <input type="checkbox" name="right-nav" id="right-nav" class="hidden peer/right-nav">
+            <label for="right-nav" class="flex sm:hidden items-center rounded-full border border-white hover:border-black p-2 m-3">
+                <span class="sr-only">Open menu</span>
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+            </label>
+            <div id="mainMenu" class="hidden sm:flex sm:space-x-4
+            peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
+                <div class="flex absolute right-0 top-0">
+                    <label for="right-nav" class="justify-end ml-auto sm:hidden text-right m-0 p-2 items-center rounded-full hover:bg-gray-100">
+                        <span class="sr-only">Close Nav</span>
+                        <svg class="w-4 h-4" fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                    </label>
+                </div>
+                <a href="#" data-section="home" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:underline hover:font-bold hover:text-red-700 active:underline active:font-bold active:text-red-700">Home</a>
+                <a href="#" data-section="resources" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:underline hover:font-bold hover:text-red-700 active:underline active:font-bold active:text-red-700">Resources</a>
+                <a href="#" data-section="about-us" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:underline hover:font-bold hover:text-red-700 active:underline active:font-bold active:text-red-700">About Us</a>
+            </div>
+            <label for="right-nav" class="hidden peer-checked/right-nav:block fixed inset-0 bg-white opacity-0"></label>
+        </div>
+    </nav>
+
+
+    <!-- Main Content Container -->
+    <div class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section-container active w-full h-screen relative">
+            <img src="/assets/LP-Home.png" alt="Home Page" class="mt-10 lg:mt-0 lg:h-full w-auto mx-auto block object-contain">
+
+            <!-- Play Button -->
+            <div class="absolute top-[46%] left-[4%] lg:top-[75%] lg:left-[15%]">
+                <a href="play/index.html">
+                <img src="/assets/btn-play.png" alt="Play Button"
+                    class="w-[45%] lg:w-[80%] transform hover:scale-110 transition-transform duration-300">
+                </a>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section-container w-full relative">
+            <!-- Image -->
+            <div class="w-full mt-10 lg:-mt-8">
+                <img src="/assets/LP-Resources.png" alt="Resources Page" class="w-full h-auto block">
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="section-container w-full relative">
+            <!-- Image -->
+            <div class="w-full mt-10 lg:-mt-8">
+                <img src="/assets/LP-About.png" alt="About-Us Page" class="w-full h-auto block">
+            </div>
+        </section>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const links = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section-container');
+
+        links.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Remove "active" class from all sections
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Remove "active" class from all nav links
+                links.forEach(l => l.classList.remove('nav-active'));
+
+                // Add "active" class to the clicked link
+                this.classList.add('nav-active');
+
+                // Get the target section by ID
+                const target = this.getAttribute('data-section');
+                const targetSection = document.getElementById(target);
+
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+    });
+</script>
+</html>
