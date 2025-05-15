@@ -22,7 +22,6 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease, transform 0.5s ease;
-            
         }
 
         .section-container.active {
@@ -35,125 +34,331 @@
             position: relative;
         }
         
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #DA291C;
-            transition: width 0.3s ease;
+        /* Desktop nav underline animation */
+        @media (min-width: 640px) {
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #DA291C;
+                transition: width 0.3s ease;
+            }
+            
+            .nav-link:hover::after,
+            .nav-link.nav-active::after {
+                width: 100%;
+            }
         }
         
-        .nav-link:hover::after,
-        .nav-link.active::after {
+        .nav-active {
+            font-weight: bold;
+            color: #DA291C;
+        }
+
+        /* Fixed nav height */
+        .nav-fixed-height {
+            height: 60px;
+        }
+        
+        /* Play experience container */
+        .play-container {
+            padding-top: 60px; /* Match nav-fixed-height */
+        }
+        
+        .fullscreen-iframe {
+            position: fixed;
+            top: 60px; /* Match nav-fixed-height */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 60px);
+            z-index: 40;
+            display: none;
+        }
+        
+        .fullscreen-iframe.active {
+            display: block;
+        }
+        
+        /* Resources page elements */
+        .resources-content {
+            position: relative;
             width: 100%;
         }
         
-    .nav-active {
-        font-weight: bold;
-        text-decoration: underline;
-        color: #DA291C;
-    }
+        .download-btn {
+            position: absolute;
+            bottom: 3%;
+            right: 15%;
+            width: 35%;
+            z-index: 10;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .ebook-preview {
+            position: absolute;
+            bottom: 2.6%;
+            left: 12%;
+            width: 25%;
+            z-index: 5;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .download-btn {
+                width: 35%;
+                bottom: 3%;
+                right: 15%;
+            }
+            
+            .ebook-preview {
+                width: 25%;
+                bottom: 2.5%;
+                left: 12%;
+            }
+        }
     </style>
 </head>
 
 <body class="font-sansnarrow m-0 p-0">
         
-    <!-- Navigation Bar (Fixed at the top) -->
-    <nav class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md">
+    <!-- Standard Navigation Bar (Fixed at the top) -->
+    <nav id="standard-nav" class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md nav-fixed-height">
         <!-- Left: DIRE Logo -->
-        <div class="flex-none mr-auto py-2 px-4">
-            <img class="h-9" src="/assets/DIRE-LOGO.png" alt="DIRE Logo">
+        <div class="flex-none mr-auto py-2 px-4 flex items-center h-full">
+            <img class="h-9" src="/assets/DIRE-LOGO.png" alt="DIRE Logo" id="logo">
         </div>
 
-        <!-- Right: Sections Button -->
-        <div class="flex space-x-3 text-sm">
+        <!-- Right: Sections Button - Moved slightly to the left with mr-3 -->
+        <div class="flex space-x-3 text-sm items-center mr-3">
             <input type="checkbox" name="right-nav" id="right-nav" class="hidden peer/right-nav">
-            <label for="right-nav" class="flex sm:hidden items-center rounded-full border border-white hover:border-black p-2 m-3">
+            <label for="right-nav" class="flex sm:hidden items-center rounded-full border border-white hover:border-black p-2 mr-3">
                 <span class="sr-only">Open menu</span>
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+                </svg>
             </label>
-            <div id="mainMenu" class="hidden sm:flex sm:space-x-4
+            <div id="mainMenu" class="hidden sm:flex sm:space-x-4 h-full items-center
             peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
                 <div class="flex absolute right-0 top-0">
                     <label for="right-nav" class="justify-end ml-auto sm:hidden text-right m-0 p-2 items-center rounded-full hover:bg-gray-100">
                         <span class="sr-only">Close Nav</span>
-                        <svg class="w-4 h-4" fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                        <svg class="w-4 h-4" fill="gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                        </svg>
                     </label>
                 </div>
-                <a href="#" data-section="home" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:underline hover:font-bold hover:text-red-700 active:underline active:font-bold active:text-red-700">Home</a>
-                <a href="#" data-section="resources" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:underline hover:font-bold hover:text-red-700 active:underline active:font-bold active:text-red-700">Resources</a>
-                <a href="#" data-section="about-us" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:underline hover:font-bold hover:text-red-700 active:underline active:font-bold active:text-red-700">About Us</a>
+                <a href="#" data-section="home" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:text-red-700 nav-active">Home</a>
+                <a href="#" data-section="resources" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:text-red-700">Resources</a>
+                <a href="#" data-section="about-us" class="nav-link py-4 px-1 uppercase transition-all duration-300 font-pt-sans-narrow hover:text-red-700">About Us</a>
             </div>
             <label for="right-nav" class="hidden peer-checked/right-nav:block fixed inset-0 bg-white opacity-0"></label>
         </div>
     </nav>
-
+    
+    <!-- Play Experience Navigation Bar - Logo positioned like home page -->
+    <nav id="play-nav" class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md z-50 nav-fixed-height hidden">
+        <!-- Left: DIRE Logo - Same positioning as home page logo -->
+        <div class="flex-none mr-auto py-2 px-4 flex items-center h-full">
+            <img class="h-9 cursor-pointer" src="/assets/DIRE-LOGO.png" alt="DIRE Logo" id="play-logo">
+        </div>
+    </nav>
 
     <!-- Main Content Container -->
     <div class="main-content">
         <!-- Home Section -->
-        <section id="home" class="section-container active w-full h-screen relative">
-            <img src="/assets/LP-Home.png" alt="Home Page" class="mt-10 lg:mt-0 lg:h-full w-auto mx-auto block object-contain">
-
-            <!-- Play Button -->
-            <div class="absolute top-[46%] left-[4%] lg:top-[75%] lg:left-[15%]">
-                <a href="play/index.html">
-                <img src="/assets/btn-play.png" alt="Play Button"
-                    class="w-[45%] lg:w-[80%] transform hover:scale-110 transition-transform duration-300">
-                </a>
+        <section id="home" class="section-container active w-full min-h-screen relative">
+            <!-- Container to keep the image and button together -->
+            <div class="relative w-full">
+                <!-- Background Image -->
+                <img src="/assets/LP-Home.png" alt="Home Page" class="w-full h-auto mt-10 lg:mt-0">
+                
+                <!-- Play Button -->
+                <div class="absolute" style="top: 78%; left: 7%; width: 33%;">
+                    <a href="#" data-section="play-experience" class="play-btn block">
+                        <img src="/assets/btn-play.png" alt="Play Button" 
+                             class="w-full transform hover:scale-110 transition-transform duration-300">
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Resources Section -->
         <section id="resources" class="section-container w-full relative">
-            <!-- Image -->
-            <div class="w-full mt-10 lg:-mt-8">
+            <!-- Resources Content Container -->
+            <div class="resources-content w-full mt-10 lg:-mt-8">
+                <!-- Background Image -->
                 <img src="/assets/LP-Resources.png" alt="Resources Page" class="w-full h-auto block">
+                
+                <!-- Download Button -->
+                <a href="#" class="download-btn block">
+                    <img src="/assets/btn-download.png" alt="Download Button" 
+                         class="w-full transform hover:scale-110 transition-transform duration-300">
+                </a>
+                
+                <!-- E-Book Preview Video -->
+                <video class="ebook-preview" autoplay loop muted playsinline>
+                    <source src="/assets/gif-ebook.mp4" type="video/mp4">
+                </video>
             </div>
         </section>
 
         <!-- About Us Section -->
         <section id="about-us" class="section-container w-full relative">
             <!-- Image -->
-            <div class="w-full mt-10 lg:-mt-8">
+            <div class="w-full mt-10 lg:-mt-4">
                 <img src="/assets/LP-About.png" alt="About-Us Page" class="w-full h-auto block">
             </div>
         </section>
+        
+        <!-- Play Experience Section -->
+        <section id="play-experience" class="section-container w-full relative">
+            <div class="play-container">
+                <!-- Adventr.ai Integration -->
+                <div style="padding-bottom: 56.25%; position: relative; height: 0; overflow: hidden; max-width: 100%;">
+                    <div id="player-container"></div>
+                </div>
+            </div>
+        </section>
     </div>
-</body>
+    
+    <!-- Fullscreen Adventr.ai Experience -->
+    <div id="fullscreen-experience" class="fullscreen-iframe">
+        <iframe id="fullscreen-player" 
+                frameborder="0" 
+                scrolling="no" 
+                referrerpolicy="origin" 
+                allowfullscreen 
+                allow="autoplay; fullscreen; clipboard-read; clipboard-write; encrypted-media; geolocation; microphone; web-share" 
+                style="width: 100%; height: 100%;"></iframe>
+    </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const links = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('.section-container');
-
+        const playButtons = document.querySelectorAll('.play-btn');
+        const fullscreenExperience = document.getElementById('fullscreen-experience');
+        const logo = document.getElementById('logo');
+        const playLogo = document.getElementById('play-logo');
+        const standardNav = document.getElementById('standard-nav');
+        const playNav = document.getElementById('play-nav');
+        
+        // Get section from URL hash or localStorage
+        const getCurrentSection = () => {
+            // First check URL hash
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                return hash;
+            }
+            
+            // Then check localStorage
+            const savedSection = localStorage.getItem('activeSection');
+            if (savedSection && document.getElementById(savedSection)) {
+                return savedSection;
+            }
+            
+            // Default to home
+            return 'home';
+        };
+        
+        // Set active section
+        const setActiveSection = (sectionId) => {
+            // Hide fullscreen experience if it's active
+            if (fullscreenExperience.classList.contains('active') && sectionId !== 'play-experience') {
+                fullscreenExperience.classList.remove('active');
+                document.getElementById('standard-nav').classList.remove('hidden');
+                document.getElementById('play-nav').classList.add('hidden');
+                
+                // Stop the Adventr.ai by clearing the iframe src
+                const fullscreenPlayer = document.getElementById('fullscreen-player');
+                fullscreenPlayer.src = "";
+            }
+            
+        // Special handling for play-experience section
+            if (sectionId === 'play-experience') {
+                // Show the fullscreen experience
+                fullscreenExperience.classList.add('active');
+                document.getElementById('standard-nav').classList.add('hidden');
+                document.getElementById('play-nav').classList.remove('hidden');
+                
+                // Load the Adventr.ai only when this section is active
+                const fullscreenPlayer = document.getElementById('fullscreen-player');
+                if (fullscreenPlayer.src !== "https://player.adventr.ai/index.html?link=22660&autoplay=1&custom-es=") {
+                    fullscreenPlayer.src = "https://player.adventr.ai/index.html?link=22660&autoplay=1&custom-es=";
+                }
+            }
+            
+            // Remove "active" class from all sections
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove "active" class from all nav links
+            links.forEach(link => link.classList.remove('nav-active'));
+            
+            // Add "active" class to the target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                
+                // Add "active" class to corresponding nav link
+                const targetLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+                if (targetLink) {
+                    targetLink.classList.add('nav-active');
+                }
+                
+                // Save to localStorage for page refresh persistence
+                localStorage.setItem('activeSection', sectionId);
+                
+                // Update URL hash without scrolling
+                const scrollPosition = window.scrollY;
+                window.location.hash = sectionId;
+                window.scrollTo(0, scrollPosition);
+            }
+        };
+        
+        // Handle nav link clicks
         links.forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
-
-                // Remove "active" class from all sections
-                sections.forEach(section => section.classList.remove('active'));
-
-                // Remove "active" class from all nav links
-                links.forEach(l => l.classList.remove('nav-active'));
-
-                // Add "active" class to the clicked link
-                this.classList.add('nav-active');
-
-                // Get the target section by ID
                 const target = this.getAttribute('data-section');
-                const targetSection = document.getElementById(target);
-
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
+                setActiveSection(target);
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
+        
+        // Handle play button clicks
+        playButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('data-section');
+                setActiveSection(target);
+            });
+        });
+        
+        // Logo click returns to home - ONLY for play logo
+        logo.addEventListener('click', function(e) {
+            // No click handler for standard logo
+        });
+        
+        // Play logo click returns to home
+        playLogo.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveSection('home');
+        });
+        
+        // Initialize with current section on page load
+        setActiveSection(getCurrentSection());
     });
 </script>
+</body>
 </html>
