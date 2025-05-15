@@ -65,12 +65,12 @@
         
         /* Play experience container */
         .play-container {
-            padding-top: 60px; /* Match nav-fixed-height */
+            padding-top: 60px;
         }
         
         .fullscreen-iframe {
             position: fixed;
-            top: 60px; /* Match nav-fixed-height */
+            top: 60px;
             left: 0;
             width: 100%;
             height: calc(100vh - 60px);
@@ -112,6 +112,21 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
+        /* About page elements */
+        .about-content {
+            position: relative;
+            width: 100%;
+        }
+        
+        .logo-gif {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18%;
+            z-index: 5;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .download-btn {
@@ -129,8 +144,8 @@
     </style>
 </head>
 
+
 <body class="font-sansnarrow m-0 p-0">
-        
     <!-- Standard Navigation Bar (Fixed at the top) -->
     <nav id="standard-nav" class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md nav-fixed-height">
         <!-- Left: DIRE Logo -->
@@ -164,7 +179,7 @@
             <label for="right-nav" class="hidden peer-checked/right-nav:block fixed inset-0 bg-white opacity-0"></label>
         </div>
     </nav>
-    
+
     <!-- Play Experience Navigation Bar - Logo positioned like home page -->
     <nav id="play-nav" class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md z-50 nav-fixed-height hidden">
         <!-- Left: DIRE Logo - Same positioning as home page logo -->
@@ -186,7 +201,7 @@
                 <div class="absolute" style="top: 78%; left: 7%; width: 33%;">
                     <a href="#" data-section="play-experience" class="play-btn block">
                         <img src="/assets/btn-play.png" alt="Play Button" 
-                             class="w-full transform hover:scale-110 transition-transform duration-300">
+                            class="w-full transform hover:scale-110 transition-transform duration-300">
                     </a>
                 </div>
             </div>
@@ -202,7 +217,7 @@
                 <!-- Download Button -->
                 <a href="#" class="download-btn block">
                     <img src="/assets/btn-download.png" alt="Download Button" 
-                         class="w-full transform hover:scale-110 transition-transform duration-300">
+                        class="w-full transform hover:scale-110 transition-transform duration-300">
                 </a>
                 
                 <!-- E-Book Preview Video -->
@@ -214,9 +229,13 @@
 
         <!-- About Us Section -->
         <section id="about-us" class="section-container w-full relative">
-            <!-- Image -->
-            <div class="w-full mt-10 lg:-mt-4">
+            <!-- About Content Container with relative positioning -->
+            <div class="about-content w-full mt-10 lg:-mt-4">
+                <!-- Background Image -->
                 <img src="/assets/LP-About.png" alt="About-Us Page" class="w-full h-auto block">
+                
+                <!-- Logo GIF positioned relative to the about-content container -->
+                <img src="/assets/gif-logo.gif" alt="DIRE Logo Animation" class="logo-gif">
             </div>
         </section>
         
@@ -230,7 +249,7 @@
             </div>
         </section>
     </div>
-    
+
     <!-- Fullscreen Adventr.ai Experience -->
     <div id="fullscreen-experience" class="fullscreen-iframe">
         <iframe id="fullscreen-player" 
