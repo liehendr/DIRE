@@ -1,12 +1,14 @@
 #!make
 # Makefile for direbali.github.io
 
-.PHONY: dev init build
+.PHONY: dev init build publish clean
 
 dev:
 	npm run dev
 
-init:
+init: clean
+	git submodule init
+	git submodule update
 	npm run init
 
 build:
