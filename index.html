@@ -220,8 +220,7 @@
                     <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
                 </svg>
             </label>
-            <div id="mainMenu" class="hidden sm:flex sm:space-x-4 h-full items-center
-            peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
+            <div id="mainMenu" class="hidden sm:flex sm:space-x-4 items-center peer-checked/right-nav:block peer-checked/right-nav:fixed peer-checked/right-nav:right-3 peer-checked/right-nav:top-3 peer-checked/right-nav:w-24 peer-checked/right-nav:origin-top-right peer-checked/right-nav:shadow-lg peer-checked/right-nav:p-2 peer-checked/right-nav:z-10 peer-checked/right-nav:bg-white">
                 <div class="flex absolute right-0 top-0">
                     <label for="right-nav" class="justify-end ml-auto sm:hidden text-right m-0 p-2 items-center rounded-full hover:bg-gray-100">
                         <span class="sr-only">Close Nav</span>
@@ -290,66 +289,94 @@
             <!-- About Content Container -->
             <div class="about-content w-full relative mt-10 lg:mt-1 transition transtion-duration-300 ease-in-out">
                 <!-- Background Image -->
-                <img src="/assets/LP-About.png" alt="About-Us Page" class="w-full h-auto block">
+                 <div class="margin-auto">
+                     <img src="/assets/LP-About-partial.jpg" alt="About-Us Page" class="w-full h-auto block">
+                 </div>
                 
                 <!-- Logo GIF -->
                 <img src="/assets/gif-logo.gif" alt="DIRE Logo Animation" class="logo-gif">
 
                 <!-- Official Sources Contacts -->
-                <div class="absolute bottom-[63.9%] md:bottom-[51.9%] lg:bottom-[47.5%] left-0 w-full px-4">
-                    <div class="flex flex-wrap md:flex-nowrap justify-center items-center text-center gap-3 md:gap-6 lg:gap-10">
-                        <!-- BMKG -->
-                        <div class="flex items-center gap-1 md:gap-2">
-                            <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG</h2>
-                            <div class="flex gap-1 md:gap-2">
-                                <a href="https://www.bmkg.go.id" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8  lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    <img src="/assets/web-icon.png" alt="BMKG Website" class="w-full h-full object-cover">
-                                </a>
-                                <a href="https://www.instagram.com/infobmkg/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    <img src="/assets/ig-icon.png" alt="BMKG Instagram" class="w-full h-full object-cover">
-                                </a>
+                <div class="mb-8 lg:mb-20 xl:mb-32">
+                    <h1 class="w-full text-center p-8 text-red-500 sm:text-xl md:text-2xl lg:text-4xl xl:text-6xl font-bold">
+                        Stay Informed: Trusted Sources for Alerts!
+                    </h1>
+                    <div class="comment-section w-full mx-auto my-8 xl:my-32 px-8 py-6 container max-w-6xl">
+                        <div class="flex flex-wrap md:flex-nowrap justify-center items-center text-center md:gap-6 lg:gap-10">
+                            <!-- BMKG -->
+                            <div class="flex items-center gap-1 md:gap-2">
+                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG</h2>
+                                <div class="flex gap-1 md:gap-2">
+                                    <a href="https://www.bmkg.go.id" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8  lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <img src="/assets/web-icon.png" alt="BMKG Website" class="w-full h-full object-cover">
+                                    </a>
+                                    <a href="https://www.instagram.com/infobmkg/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <img src="/assets/ig-icon.png" alt="BMKG Instagram" class="w-full h-full object-cover">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- BMKG (III) Denpasar -->
-                        <div class="flex items-center gap-1 md:gap-2">
-                            <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG (III) Denpasar</h2>
-                            <div class="flex gap-1 md:gap-2">
-                                <a href="https://bbmkg3.bmkg.go.id/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    <img src="/assets/web-icon.png" alt="BMKG Denpasar Website" class="w-full h-full object-cover">
-                                </a>
-                                <a href="https://www.instagram.com/bmkgbali/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    <img src="/assets/ig-icon.png" alt="BMKG Denpasar Instagram" class="w-full h-full object-cover">
-                                </a>
+                            <!-- BMKG (III) Denpasar -->
+                            <div class="flex items-center gap-1 md:gap-2">
+                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG (III) Denpasar</h2>
+                                <div class="flex gap-1 md:gap-2">
+                                    <a href="https://bbmkg3.bmkg.go.id/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <img src="/assets/web-icon.png" alt="BMKG Denpasar Website" class="w-full h-full object-cover">
+                                    </a>
+                                    <a href="https://www.instagram.com/bmkgbali/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <img src="/assets/ig-icon.png" alt="BMKG Denpasar Instagram" class="w-full h-full object-cover">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- BPBD Bali -->
-                        <div class="flex items-center gap-1 md:gap-2">
-                            <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BPBD Bali</h2>
-                            <div class="flex gap-1 md:gap-2">
-                                <a href="https://bpbd.baliprov.go.id/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    <img src="/assets/web-icon.png" alt="BPBD Bali Website" class="w-full h-full object-cover">
-                                </a>
-                                <a href="https://www.instagram.com/bpbdbali/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                                    <img src="/assets/ig-icon.png" alt="BPBD Bali Instagram" class="w-full h-full object-cover">
-                                </a>
+                            <!-- BPBD Bali -->
+                            <div class="flex items-center gap-1 md:gap-2">
+                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BPBD Bali</h2>
+                                <div class="flex gap-1 md:gap-2">
+                                    <a href="https://bpbd.baliprov.go.id/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <img src="/assets/web-icon.png" alt="BPBD Bali Website" class="w-full h-full object-cover">
+                                    </a>
+                                    <a href="https://www.instagram.com/bpbdbali/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <img src="/assets/ig-icon.png" alt="BPBD Bali Instagram" class="w-full h-full object-cover">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- DIRE Contacts -->
-                <div class="flex gap-42 absolute bottom-[55.7%] md:bottom-[38%] lg:bottom-[32.2%] left-[32%] text-[12px] text-black sm:text-sm md:text-base lg:text-xl font-bold">
-                    <a class="text-black underline hover:scale-110 transition-all duration-300 ease-in-out" href="https://instagram.com/dire.bali" target="_blank">
-                        @dire.bali
-                    </a>
-
-                    <h1>
-                        disasterready.bali@gmail.com
+                <div class="mb-8 lg:mb-20 xl:mb-32">
+                    <h1 class="w-full text-center p-8 text-red-500 sm:text-xl md:text-2xl lg:text-4xl xl:text-6xl font-bold">
+                        Get To Know Us More!
                     </h1>
+                    <div class="comment-section w-full mx-auto my-8 xl:my-32 px-8 py-6 container max-w-6xl">
+                        <div class="flex flex-wrap justify-center items-center text-center text-[12px] text-black sm:text-sm md:text-base lg:text-xl font-bold gap-2 sm:gap-8 md:gap-16 lg:gap-32">
+                            <!-- Instagram -->
+                            <div class="flex items-center gap-1 md:gap-2 text-black font-bold hover:scale-110 transition-transform duration-300">
+                                <div class="flex gap-1 md:gap-2">
+                                    <a href="https://www.instagram.com/dire.bali/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center">
+                                        <img src="/assets/ig-icon.png" alt="Instagram Logo" class="w-full h-full object-cover">
+                                    </a>
+                                </div>
+                                <a class="underline" href="https://instagram.com/dire.bali" target="_blank">
+                                    @dire.bali
+                                </a>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="flex items-center gap-1 md:gap-2 hover:scale-110 transition-transform duration-300">
+                                <div class="flex gap-1 md:gap-2">
+                                    <a href="#" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center" inert>
+                                        <img src="/assets/email-icon.png" alt="Email Icon" class="w-full h-full object-cover">
+                                    </a>
+                                </div>
+                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">disasterready.bali@gmail.com</h2>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
+
                 <!-- Comment Section -->
                 <div class="comment-section w-full max-w-2xl mx-auto my-8 px-8 py-6">
                     <h2 class="text-sm md:text-lg font-semibold mb-6 text-center">
