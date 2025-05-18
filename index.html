@@ -91,7 +91,7 @@
         .download-btn {
             position: absolute;
             bottom: 3%;
-            right: 15%;
+            right: 17%;
             width: 35%;
             z-index: 10;
             transform: translateY(-50%);
@@ -176,12 +176,13 @@
             transform: translateY(0);
         }
         
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .download-btn {
                 width: 35%;
                 bottom: 3%;
-                right: 15%;
+                right: 17%;
             }
             
             .ebook-preview {
@@ -237,29 +238,42 @@
         </div>
     </nav>
 
-    <!-- Play Experience Navigation Bar - Logo positioned like home page -->
+    <!-- Play Experience Navigation Bar -->
     <nav id="play-nav" class="fixed top-0 left-0 w-full bg-white z-50 flex shadow-md z-50 nav-fixed-height hidden">
         <!-- Left: DIRE Logo -->
         <div class="flex-none mr-auto py-2 px-4 flex items-center h-full">
             <img class="h-9 cursor-pointer" src="/assets/DIRE-LOGO.png" alt="DIRE Logo" id="play-logo">
         </div>
+
+        <!-- Right: Audio Control Button -->
+        <div class="flex items-center pr-4">
+            <div id="audio-control" class="cursor-pointer w-10 h-10 flex justify-center items-center">
+                <img id="audio-icon" src="/assets/music-off.png" alt="music-off" class="w-6 h-6">
+            </div>
+        </div>
+</div>
+
     </nav>
 
     <!-- Main Content Container -->
     <div class="main-content">
         <!-- Home Section -->
         <section id="home" class="section-container active w-full min-h-screen relative">
-            <!-- Container to keep the image and button together -->
             <div class="relative w-full">
                 <!-- Background Image -->
                 <img src="/assets/LP-Home.png" alt="Home Page" class="w-full h-auto mt-10 lg:mt-0">
                 
                 <!-- Play Button -->
-                <div class="absolute" style="top: 78%; left: 7%; width: 33%;">
+                <div class="absolute" style="top: 19.5%; left: 12%; width: 33%;">
                     <a href="#" data-section="play-experience" class="play-btn block">
                         <img src="/assets/btn-play.png" alt="Play Button" 
                             class="w-full transform hover:scale-110 transition-transform duration-300">
                     </a>
+                </div>
+
+                <div class="relative w-full">
+                <!-- How To Play & Credits Section -->
+                <img src="/assets/LP-Home2.png" alt="Home Page 2" class="w-full h-auto mt-10 lg:mt-0">
                 </div>
             </div>
         </section>
@@ -302,11 +316,11 @@
                         Stay Informed: Trusted Sources for Alerts!
                     </h1>
                     <div class="comment-section w-full mx-auto my-8 xl:my-32 px-8 py-6 container max-w-6xl">
-                        <div class="flex flex-wrap md:flex-nowrap justify-center items-center text-center md:gap-6 lg:gap-10">
+                        <div class="flex flex-wrap md:flex-nowrap justify-center items-center text-center gap-2 md:gap-6 lg:gap-12">
                             <!-- BMKG -->
                             <div class="flex items-center gap-1 md:gap-2">
-                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG</h2>
-                                <div class="flex gap-1 md:gap-2">
+                                <h2 class="text-[12px] sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG</h2>
+                                <div class="flex gap-0.5 md:gap-2">
                                     <a href="https://www.bmkg.go.id" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8  lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                                         <img src="/assets/web-icon.png" alt="BMKG Website" class="w-full h-full object-cover">
                                     </a>
@@ -318,8 +332,8 @@
 
                             <!-- BMKG (III) Denpasar -->
                             <div class="flex items-center gap-1 md:gap-2">
-                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG (III) Denpasar</h2>
-                                <div class="flex gap-1 md:gap-2">
+                                <h2 class="text-[12px] sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BMKG (III) Denpasar</h2>
+                                <div class="flex gap-0.5 md:gap-2">
                                     <a href="https://bbmkg3.bmkg.go.id/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                                         <img src="/assets/web-icon.png" alt="BMKG Denpasar Website" class="w-full h-full object-cover">
                                     </a>
@@ -331,8 +345,8 @@
 
                             <!-- BPBD Bali -->
                             <div class="flex items-center gap-1 md:gap-2">
-                                <h2 class="text-xs sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BPBD Bali</h2>
-                                <div class="flex gap-1 md:gap-2">
+                                <h2 class="text-[12px] sm:text-sm md:text-base lg:text-xl font-semibold whitespace-nowrap">BPBD Bali</h2>
+                                <div class="flex gap-0.5 md:gap-2">
                                     <a href="https://bpbd.baliprov.go.id/" target="_blank" class="w-5 h-5 sm:w-8 sm:h-8 lg:w-12 lg:h-12 flex items-center justify-center hover:scale-110 transition-transform duration-300">
                                         <img src="/assets/web-icon.png" alt="BPBD Bali Website" class="w-full h-full object-cover">
                                     </a>
@@ -429,6 +443,11 @@
                 style="width: 100%; height: 100%;"></iframe>
     </div>
     
+    <!-- Background Music Audio Element -->
+    <audio id="background-music" loop preload="auto">
+        <source src="/assets/bgm.mp3" type="audio/mp3">
+    </audio>
+    
     <!-- Notification Modal -->
     <div id="notificationModal" class="notification-overlay">
         <div class="notification-content">
@@ -450,6 +469,59 @@
         const playLogo = document.getElementById('play-logo');
         const standardNav = document.getElementById('standard-nav');
         const playNav = document.getElementById('play-nav');
+        
+        // Background music elements
+        const backgroundMusic = document.getElementById('background-music');
+        const audioControl = document.getElementById('audio-control');
+        const audioIcon = document.getElementById('audio-icon');
+        
+        // Set initial volume (5%)
+        backgroundMusic.volume = 0.5;
+        
+        // Flag to track music state
+        let isMusicPlaying = false;
+        
+        // Function to play background music
+        const playBackgroundMusic = () => {
+            backgroundMusic.play()
+                .then(() => {
+                    isMusicPlaying = true;
+                    audioIcon.src = "/assets/music-off.png";
+                })
+                .catch(error => {
+                    console.error("Audio playback failed:", error);
+                });
+        };
+        
+        // Function to pause background music
+        const pauseBackgroundMusic = () => {
+            backgroundMusic.pause();
+            isMusicPlaying = false;
+            audioIcon.src = "/assets/music-on.png";
+        };
+        
+        // Toggle music play/pause
+        const toggleBackgroundMusic = () => {
+            if (isMusicPlaying) {
+                pauseBackgroundMusic();
+            } else {
+                playBackgroundMusic();
+            }
+        };
+        
+        // Audio control button click handler
+        audioControl.addEventListener('click', toggleBackgroundMusic);
+        
+        // Backspace key handler for music toggle
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Backspace") {
+                // Only toggle if we're in the play experience section
+                if (fullscreenExperience.classList.contains('active')) {
+                    toggleBackgroundMusic();
+                    event.preventDefault(); // Prevent browser back navigation
+                }
+            }
+        });
         
         // Get section from URL hash or localStorage
         const getCurrentSection = () => {
@@ -480,9 +552,13 @@
                 // Stop the Adventr.ai by clearing the iframe src
                 const fullscreenPlayer = document.getElementById('fullscreen-player');
                 fullscreenPlayer.src = "";
+                
+                // Hide audio control and stop music when leaving play experience
+                audioControl.classList.remove('active');
+                pauseBackgroundMusic();
             }
             
-        // Special handling for play-experience section
+            // Special handling for play-experience section
             if (sectionId === 'play-experience') {
                 // Show the fullscreen experience
                 fullscreenExperience.classList.add('active');
@@ -494,6 +570,10 @@
                 if (fullscreenPlayer.src !== "https://player.adventr.ai/index.html?link=22660&autoplay=1&custom-es=") {
                     fullscreenPlayer.src = "https://player.adventr.ai/index.html?link=22660&autoplay=1&custom-es=";
                 }
+                
+                // Show audio control and start music automatically
+                audioControl.classList.add('active');
+                playBackgroundMusic();
             }
             
             // Remove "active" class from all sections
